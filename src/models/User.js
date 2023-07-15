@@ -44,11 +44,18 @@ const userSchema = new Schema({
 	},
 	role: {
 		type: String,
-		required: [true, "Please select a role"],
-		enum: ["student","hod","advisor","admin"]
+		enum: ["student","hod","advisor","admin"],
+		default: "student",
 	}
 }, { timestamps: true} );
 
+//hash password before storing to mongodb
+userSchema.pre("save", async function(next){
+	const salt = await bcrypt.genSalt();
+	this.password = await bcrypt.hash(this.password,salt);
+	next();
+});
+
 const User = mongoose.model("User",userSchema);
 
-module.exports = User;
+module.exports = User;                                                     

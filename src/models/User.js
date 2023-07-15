@@ -46,7 +46,13 @@ const userSchema = new Schema({
 		type: String,
 		enum: ["student","hod","advisor","admin"],
 		default: "student",
-	}
+	},
+	department: {
+		type: String,
+		required:[true,"Please select a department"],
+		enum: ["cs","ms","eee","c","mca","chem","mtech","mplan","arch","march"]
+	},
+
 }, { timestamps: true} );
 
 //hash password before storing to mongodb
@@ -56,6 +62,21 @@ userSchema.pre("save", async function(next){
 	next();
 });
 
+userSchema.statics.login = async ( email, password ) {
+	const user = await this.findOne({ email });
+
+	if(user){
+		const auth = await bcrypt.compare( user.password, password );
+
+		if(auth){
+			return user;
+		}
+		throw Error("incorrect password");
+	}
+	throw Error("incorrect email");
+}
+
+
 const User = mongoose.model("User",userSchema);
 
-module.exports = User;                                                     
+module.exports = User;                                       

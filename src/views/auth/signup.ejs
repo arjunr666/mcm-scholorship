@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%- include('../partials/head.ejs') %>
+  <body>
+    <%- include('../partials/nav.ejs') %>
+
+    <div>
+      <div>
+        <form id="form">
+          <label for="firstName"> First Name </label>
+          <br />
+          <input type="text" id="firstName" name="firstName" />
+          <br />
+          <span class="error" id="firstNameErr"></span>
+          <br />
+
+          <label for="lastName"> Last Name </label>
+          <br />
+          <input type="text" id="lastName" name="lastName" />
+          <br />
+          <span class="error" id="lastNameErr"></span>
+          <br />
+
+          <label for="email"> Email </label>
+          <br />
+          <input type="text" id="email" name="email" />
+          <br />
+          <span class="emailErr"></span>
+          <br />
+
+          <label for="phone"> Phone number </label>
+          <br />
+          <input type="text" id="phone" name="phone" />
+          <br />
+          <span class="phoneErr"></span>
+          <br />
+          <label for="department"> Department</label>
+          <br />
+
+          <select id="department" name="depatment">
+            <option value="cs">CS</option>
+            <option value="ms">MS</option>
+            <option value="eee">EEE</option>
+            <option value="c">C</option>
+            <option value="mca">MCA</option>
+            <option value="chem">CHEM</option>
+            <option value="mtech">MTECH</option>
+            <option value="mplan">MPLAN</option>
+            <option value="arch">ARCH</option>
+            <option value="march">MARCH</option>
+          </select>
+          <br />
+
+          <span class="error" id="departmentErr"></span>
+          <br />
+
+          <label for="password"> Password </label>
+          <br />
+          <input type="password" id="password" name="password" />
+          <br />
+          <span class="passwordErr"></span>
+          <br />
+
+          <label for="confirmPassword"> Confirm Password </label>
+          <br />
+          <input type="password" id="confirmPassword" name="confirmPassword" />
+          <br />
+          <span class="confirmPasswordErr"></span>
+          <br />
+          <button id="btn">Signup</button>
+        </form>
+      </div>
+    </div>
+
+    <script>
+      const form = document.getElementById("form");
+      const firstNameErr = document.getElementById("firstNameErr");
+      const lastNameErr = document.getElementById("lastNameErr");
+      const emailErr = document.getElementById("emailErr");
+      const phoneErr = document.getElementById("phoneErr");
+      const departmentErr = document.getElementById("departmentErr");
+      const passwordErr = document.getElementById("passwordErr");
+      const confirmPasswordErr = document.getElementById("confirmPasswordErr");
+
+      const btn = document.getElementById("btn");
+
+      btn.addEventListener("click", async (e) => {
+        e.preventDefault();
+
+        const firstName = document.getElementById("firstName").value;
+        const lastName = document.getElementById("lastName").value;
+        const email = document.getElementById("email").value;
+        const phone = document.getElementById("phone").value;
+        const password = document.getElementById("password").value;
+        const confirmPassword =
+          document.getElementById("confirmPassword").value;
+        const department = document.getElementById("department").value;
+
+        //console.log(firstName,lastName,email,phone,password,confirmPassword,department);
+
+        firstNameErr.textContent = "";
+        lastNameErr.textContent = "";
+        emailErr.textContent = "";
+        phoneErr.textContent = "";
+        departmentErr.textContent = "";
+        passwordErr.textContent = "";
+        confirmPasswordErr.textContent = "";
+
+        try {
+          const res = await fetch("/auth/signup", {
+            method: "POST",
+            body: JSON.stringify({
+              firstName,
+              lastName,
+              email,
+              phone,
+              department,
+              password,
+            }),
+            headers: { "Content-Type": "application/json" },
+          });
+
+          const data = await res.json();
+          console.log(data);
+          
+        } catch (err) {
+          console.log(err);
+        }
+      });
+    </script>
+
+    <%- include('../partials/footer.ejs') %>
+  </body>
+</html>

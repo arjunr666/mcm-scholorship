@@ -7,6 +7,7 @@ const {
   isStrongPassword,
 } = require("validator");
 
+
 const Schema = mongoose.Schema;
 
 const userSchema = new Schema(
@@ -14,9 +15,15 @@ const userSchema = new Schema(
     firstName: {
       type: String,
       required: [true, "Please enter first name"],
-      minlength: [3, "First name should atleast be 2 characters"],
-      maxlength: [25, "First name should not exceed 25 characters"],
+      minlength: [2, "First name should atleast be 2 characters"],
+      maxlength: [50, "First name should not exceed 50 characters"],
       validate: [isAlpha, "First name should not contain numbers"],
+    },
+    middleName: {
+      type: String,
+      minlength: [1, "Last name cannot be empty"],
+      maxlength: [50, "Last shout not exceed 50 characters"],
+      validate: [isAlpha, "Last name should not contain numbers"],
     },
     lastName: {
       type: String,
@@ -24,6 +31,11 @@ const userSchema = new Schema(
       minlength: [1, "Last name cannot be empty"],
       maxlength: [50, "Last shout not exceed 50 characters"],
       validate: [isAlpha, "Last name should not contain numbers"],
+    },
+    employeeNumber : {
+      type: Number,
+      required:[true,"Please enter an employee number"],
+      unique: true,
     },
     email: {
       type: String,
@@ -42,15 +54,13 @@ const userSchema = new Schema(
     },
     phone: {
       type: Number,
-      required: true,
+      required: [true,"Please enter a phone number"],
       unique: true,
-      minlength: [10, "Phone number should be atleast 10 digits"],
-      maxlength: [10, "Phone number should not exceed 10 digits"],
       validate: [isMobilePhone, "Please enter a valid phone number"],
     },
     role: {
       type: String,
-      enum: ["student", "hod", "advisor", "admin"],
+      enum: ["hod","coordinator", "advisor", "admin"],
       default: "student",
     },
     department: {
@@ -80,8 +90,8 @@ userSchema.pre("save", async function (next) {
   next();
 });
 
-userSchema.statics.login = async function (email, password) {
-  const user = await this.findOne({ email });
+userSchema.statics.login = async function (employeeNumber, password) {
+  const user = await this.findOne({ employeeNumber });
 
   if (user) {
     const auth = await bcrypt.compare(user.password, password);

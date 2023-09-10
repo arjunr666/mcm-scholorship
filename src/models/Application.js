@@ -168,10 +168,26 @@ const applicationSchema = new Schema(
     },
     expectedExpenses: expenses,
     bankAccountDetails: bankAccount,
+    bankPassbook: {
+      filename: String,
+      originalName: String,
+      contentType: String,
+    },
+    incomeCertificate: {
+      filename: String,
+      originalName: String,
+      contentType: String,
+    },
+    entraceRanklist: {
+      filename: String,
+      originalName: String,
+      contentType: String,
+    },
   },
+
   { timestamps: true }
 );
 
 const Application = mongoose.model("Application", applicationSchema);
 
-module.exports = Scholarship;
+module.exports = Application;

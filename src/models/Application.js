@@ -50,7 +50,7 @@ const bankAccount = new mongoose.Schema({
     required: true,
   },
   ifsc: {
-    type: Number,
+    type: String,
     required: true,
   },
 });
@@ -62,7 +62,6 @@ const applicationSchema = new Schema(
       required: [true, "Please enter the full name"],
       minlength: [5, "Full name should  atleast be 5 characters"],
       maxlength: [100, "Full name should not exceed 100 characters"],
-      validate: [isAlpha, "Full name should not contain numbers"],
     },
     phone: {
       type: String,
@@ -72,7 +71,7 @@ const applicationSchema = new Schema(
     category: {
       type: String,
       required: [true, "Please select a category"],
-      enum: ["General", "SC/ST", "OBC", "Others"],
+      enum: ["general", "sc/st", "obc", "others"],
     },
     gender: {
       type: String,
@@ -82,9 +81,9 @@ const applicationSchema = new Schema(
       type: Date,
       required: [true, "Please enter date of birth"],
     },
-    hosteler: {
+    isHosteller: {
       type: Boolean,
-      required: [true, "Please speccify hosteller / day scholor"],
+      required: [true, "Please speccify hosteller / days scholor"],
     },
     hostelName: {
       type: String,
@@ -109,6 +108,10 @@ const applicationSchema = new Schema(
         "march",
       ],
     },
+    yearOfAdmission: {
+      type: Number,
+      required: true,
+    },
     residentialAddress: {
       type: String,
       required: [true, "Please enter the address and phone number"],
@@ -120,10 +123,8 @@ const applicationSchema = new Schema(
     },
     hostelAddress: {
       type: String,
-      minlength: [25, "Hostel address should contain atleast 25 characters"],
-      maxlength: [255, "Hostel address should not exceed 255 characters"],
     },
-    previousInstitutionAddress: {
+    plusTwoInstitutionAddress: {
       type: String,
       required: [
         true,
@@ -148,12 +149,12 @@ const applicationSchema = new Schema(
     cgpaBySemester: [cgpa],
     incomeDetailsOfFamily: [incomeDetails],
     anyOtherIncomeSources: {
-      type: Boolean,
-      required: true,
+      type: String,
     },
+
     totalIncomeOfFamily: {
       type: Number,
-      required: True,
+      required: true,
     },
     receiptOfAnyBankLoan: {
       type: Boolean,
@@ -175,12 +176,10 @@ const applicationSchema = new Schema(
     },
     incomeCertificate: {
       filename: String,
-      originalName: String,
       contentType: String,
     },
     entraceRanklist: {
       filename: String,
-      originalName: String,
       contentType: String,
     },
   },

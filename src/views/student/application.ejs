@@ -1,0 +1,1136 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%- include('../partials/head.ejs') %>
+  <body>
+    <%- include('../partials/nav.ejs') %>
+
+    <div id="form">
+      <h2>Regsitration Form</h2>
+      <form
+        action="/student/register"
+        method="POST"
+        enctype="multipart/form-data"
+      >
+        <div>
+          <label for="full-name"
+            >Name of the Applicant:<span class="starred">*</span></label
+          ><br />
+          <input type="text" name="full-name" id="full-name" /><br />
+          <span class="error" id="full-name-err"></span><br />
+        </div>
+        <div>
+          <label for="contact-phone-number"
+            >Contact Phone/Mobile No:<span class="starred">*</span> </label
+          ><br />
+          <input
+            type="text"
+            name="contact-phone-number"
+            id="contact-phone-number"
+          /><br />
+          <span class="error" id="contact-phone-number-err"></span><br />
+        </div>
+        <div>
+          <label for="category">Category:<span class="starred">*</span> </label
+          ><br />
+          <select name="category" id="category">
+            <option value="general">General</option>
+            <option value="sc/st">SC/ST</option>
+            <option value="obc">OBC</option>
+            <option value="others">Others</option>
+          </select>
+          <br />
+          <!-- <span id="category-err"></span> <br /> -->
+        </div>
+        <div>
+          <label for="gender">Gender:<span class="starred">*</span> </label
+          ><br />
+          <select name="gender" id="gender">
+            <option value="Male">Male</option>
+            <option value="Female">Female</option>
+          </select>
+          <br />
+          <!-- <span id="gender-err"></span> <br /> -->
+        </div>
+        <div>
+          <label for="dob"
+            >Date of Birth (DD/MM/YYYY):<span class="starred">*</span> </label
+          ><br />
+          <input type="date" name="dob" id="dob" />
+          <span id="dob-err"></span>
+        </div>
+        <div>
+          <label for="hosteller/days-scolar"
+            >Hosteller/Days Scolar:<span class="starred">*</span> </label
+          ><br />
+          <select name="hosteller/daysScolar" id="hosteller/days-scolar">
+            <option value="true">Hosteller</option>
+            <option value="false">Days Scholor</option>
+          </select>
+          <br />
+          <span id="hosteller/days-scolar-err"></span> <br />
+        </div>
+        <div>
+          <label for="hostel-name">If Hosteller , Name of Hostel: </label><br />
+          <input type="text" name="hostel-name" id="hostel-name" /> <br />
+          <span id="hostel-name-err"></span> <br />
+        </div>
+        <div>
+          <label for="semester">Semester:<span class="starred">*</span> </label
+          ><br />
+          <select name="semester" id="semester">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+            <option value="7">7</option>
+          </select>
+          <br />
+          <!-- <span id="semester-err"></span> <br /> -->
+        </div>
+        <div>
+          <label for="branch"
+            >Branch of Study:<span class="starred">*</span> </label
+          ><br />
+          <select name="branch" id="branch">
+            <option value="cs">CS</option>
+            <option value="ms">MS</option>
+            <option value="eee">EEE</option>
+            <option value="c">C</option>
+            <option value="mca">MCA</option>
+            <option value="chem">Chemistry</option>
+            <option value="arch">Architecture</option>
+            <option value="mtech">MTech</option>
+            <option value="mplan">MPlan</option>
+            <option value="march">MArch</option>
+          </select>
+          <br />
+          <!-- <span id="branch-err"></span> <br /> -->
+        </div>
+        <div>
+          <label for="year-of-admission"
+            >Year of Admission:<span class="starred">*</span> </label
+          ><br />
+          <input type="text" name="year-of-admission" id="year-of-admission" />
+          <br />
+          <span class="error" id="year-of-admission-err"></span> <br />
+        </div>
+        <div>
+          <label for="residential-address"
+            >Residential Address & Phone No:<span class="starred">*</span><br />
+          </label>
+          <textarea
+            name="residential-address"
+            id="residential-address"
+            cols="30"
+            rows="10"
+          ></textarea>
+          <br />
+          <span class="error" id="residential-address-err"></span> <br />
+        </div>
+        <div>
+          <label for="hostel-address">Hostel Address: </label><br />
+          <input type="text" name="hostel-address" id="hostel-address" />
+          <br />
+          <span id="hostel-addressErr"></span><br />
+        </div>
+        <div>
+          <label for="plus-two-institute-address"
+            >Address of the Institute studied for "Plus Two":<span
+              class="starred"
+              >*</span
+            ><br />
+          </label>
+          <input
+            type="text"
+            name="plus-two-institute-address"
+            id="plus-two-institute-address"
+          />
+          <br />
+          <span class="error" id="plus-two-institute-address-err"></span> <br />
+        </div>
+        <div>
+          <label for="kerala-entrance-rank-obtained">
+            Kerala Entrance Rank Obtained (Enclose proof)
+          </label>
+          <br />
+          <label for="first-chance"
+            >First Chance:<span class="starred">*</span> </label
+          ><br />
+          <input type="text" name="first-chance" id="first-chance" /> <br />
+          <label for="second-chance">Second Chance: </label><br />
+          <input type="text" name="second-chance" id="second-chance" /> <br />
+          <label for="third-chance">Third Chance: </label><br />
+          <input type="text" name="third-chance" id="third-chance" />
+          <br />
+          <span class="error" id="kerala-entrance-rank-obtained-err"></span>
+        </div>
+        <div>
+          <label for="gpa-in-all-semesters-upto-pervious-semester"
+            >GPA's in all semesters up to previous semesters</label
+          >
+          <table>
+            <tr>
+              <th>Semester</th>
+              <th>1</th>
+              <th>2</th>
+              <th>3</th>
+              <th>4</th>
+              <th>5</th>
+              <th>6</th>
+              <th>7</th>
+            </tr>
+            <tr>
+              <th>GPA Total Marks / Sessional Marks</th>
+              <th><input type="text" name="gpa-s1" id="gpa-s1" /></th>
+              <th><input type="text" name="gpa-s2" id="gpa-s2" /></th>
+              <th><input type="text" name="gpa-s3" id="gpa-s3" /></th>
+              <th><input type="text" name="gpa-s4" id="gpa-s4" /></th>
+              <th><input type="text" name="gpa-s5" id="gpa-s5" /></th>
+              <th><input type="text" name="gpa-s6" id="gpa-s6" /></th>
+              <th><input type="text" name="gpa-s7" id="gpa-s7" /></th>
+            </tr>
+            <tr>
+              <th>Month and year of Appearance</th>
+              <th>
+                <input
+                  type="text"
+                  name="month-and-year-s1"
+                  id="month-and-year-s1"
+                />
+              </th>
+              <th>
+                <input
+                  type="text"
+                  name="month-and-year-s2"
+                  id="month-and-year-s2"
+                />
+              </th>
+              <th>
+                <input
+                  type="text"
+                  name="month-and-year-s3"
+                  id="month-and-year-s3"
+                />
+              </th>
+              <th>
+                <input
+                  type="text"
+                  name="month-and-year-s4"
+                  id="month-and-year-s4"
+                />
+              </th>
+              <th>
+                <input
+                  type="text"
+                  name="month-and-year-s5"
+                  id="month-and-year-s5"
+                />
+              </th>
+              <th>
+                <input
+                  type="text"
+                  name="month-and-year-s6"
+                  id="month-and-year-s6"
+                />
+              </th>
+              <th>
+                <input
+                  type="text"
+                  name="month-and-year-s7"
+                  id="month-and-year-s7"
+                />
+              </th>
+            </tr>
+            <tr>
+              <th>No.of Back Papers</th>
+              <th>
+                <input
+                  type="text"
+                  name="no-of-back-papers-s1"
+                  id="no-of-back-papers-s1"
+                />
+              </th>
+              <th>
+                <input
+                  type="text"
+                  name="no-of-back-papers-s2"
+                  id="no-of-back-papers-s2"
+                />
+              </th>
+              <th>
+                <input
+                  type="text"
+                  name="no-of-back-papers-s3"
+                  id="no-of-back-papers-s3"
+                />
+              </th>
+              <th>
+                <input
+                  type="text"
+                  name="no-of-back-papers-s4"
+                  id="no-of-back-papers-s4"
+                />
+              </th>
+              <th>
+                <input
+                  type="text"
+                  name="no-of-back-papers-s5"
+                  id="no-of-back-papers-s5"
+                />
+              </th>
+              <th>
+                <input
+                  type="text"
+                  name="no-of-back-papers-s6"
+                  id="no-of-back-papers-s6"
+                />
+              </th>
+              <th>
+                <input
+                  type="text"
+                  name="no-of-back-papers-s7"
+                  id="no-of-back-papers-s7"
+                />
+              </th>
+            </tr>
+          </table>
+          <span id="gpa-in-all-semesters-upto-pervious-semester-err"></span>
+        </div>
+        <div>
+          <table>
+            <tr>
+              <th>Income details of Family</th>
+              <th>Name</th>
+              <th>Age</th>
+              <th>Annual income</th>
+            </tr>
+            <tr>
+              <th>Father</th>
+              <td>
+                <input type="text" name="name-of-father" id="name-of-father" />
+              </td>
+              <td>
+                <input type="text" name="age-of-father" id="age-of-father" />
+              </td>
+              <td>
+                <input
+                  type="text"
+                  name="annual-income-of-father"
+                  id="annual-income-of-father"
+                />
+              </td>
+            </tr>
+            <tr>
+              <th>Mother</th>
+              <td>
+                <input type="text" name="name-of-mother" id="name-of-mother" />
+              </td>
+              <td>
+                <input type="text" name="age-of-mother" id="age-of-mother" />
+              </td>
+              <td>
+                <input
+                  type="text"
+                  name="annual-income-of-mother"
+                  id="annual-income-of-mother"
+                />
+              </td>
+            </tr>
+            <tr>
+              <th>Income from any other source:</th>
+              <td>
+                <input
+                  type="text"
+                  name="other-income-source"
+                  id="other-income-source"
+                />
+              </td>
+            </tr>
+            <tr>
+              <th>Total Income of Family: <span class="starred">*</span></th>
+              <td>
+                <input
+                  type="text"
+                  name="total-income-of-family"
+                  id="total-income-of-family"
+                />
+              </td>
+            </tr>
+          </table>
+          <span class="error" id="total-income-of-family-err"></span>
+        </div>
+        <div>
+          <div>
+            <label for="receipt-of-bank-loan"
+              >Receipt of any Bank Loan: <span class="starred">*</span></label
+            >
+            <label for="receipt-of-bank-loan-yes">Yes</label>
+            <input
+              type="radio"
+              name="receipt-of-bank-loan"
+              id="receipt-of-bank-loan-yes"
+              value="true"
+            />
+            <label for="receipt-of-bank-loan-no">No</label>
+            <input
+              type="radio"
+              name="receipt-of-bank-loan"
+              id="receipt-of-bank-loan-no"
+              value="false"
+            />
+            <br />
+            <span class="error" id="receipt-of-bank-loan-err"></span>
+          </div>
+          <div>
+            <label
+              for="receipt-of-any-other-financial-assistance-or-scholarship"
+              >Receipt of any Bank Loan: <span class="starred">*</span></label
+            >
+            <label
+              for="receipt-of-any-other-financial-assistance-or-scholarship-yes"
+              >Yes</label
+            >
+            <input
+              type="radio"
+              name="receipt-of-any-other-financial-assistance-or-scholarship"
+              id="receipt-of-any-other-financial-assistance-or-scholarship-yes"
+              value="true"
+            />
+            <label
+              for="receipt-of-any-other-financial-assistance-or-scholarship-no"
+              >No</label
+            >
+            <input
+              type="radio"
+              name="receipt-of-any-other-financial-assistance-or-scholarship"
+              id="receipt-of-any-other-financial-assistance-or-scholarship-no"
+              value="false"
+            />
+            <br />
+
+            <span
+              class="error"
+              id="receipt-of-any-other-financial-assistance-or-scholarship-err"
+            ></span>
+          </div>
+          <div>
+            <label for="name-of-availing-scholarship"
+              >If specify name of availing scholarship: </label
+            ><br />
+            <input
+              type="text"
+              name="name-of-availing-scholarship"
+              id="name-of-availing-scholarship"
+            />
+            <span id="name-of-availing-scholarship-err"></span>
+          </div>
+        </div>
+        <div>
+          <label for="expected-expenses-for-the-cuurent-accademic-year"
+            >Expected expenses for the current accademic year</label
+          >
+          <div>
+            <label for="semester-fees"
+              >Semester fees / year: <span class="starred">*</span></label
+            ><br />
+            <input type="text" name="semester-fees" id="semester-fees" /><br />
+            <span class="error" id="semester-fees-err"></span>
+          </div>
+          <div>
+            <label for="hostel-fees">Hostel fees / year: </label><br />
+            <input type="text" name="hostel-fees" id="hostel-fees" />
+            <span id="hostel-fees-err"></span>
+          </div>
+          <div>
+            <label for="exam-fees"
+              >Exam fees / year:<span class="starred">*</span></label
+            ><br />
+            <input type="text" name="exam-fees" id="exam-fees" /> <br />
+            <span class="error" id="exam-fees-err"></span>
+          </div>
+          <div>
+            <label for="book-or-stationaries-fees"
+              >Book / Stationaries fees:</label
+            ><br />
+            <input
+              type="text"
+              name="book-or-stationaries-fees"
+              id="book-or-stationaries-fees"
+            />
+            <span id="book-or-stationaries-fees-err"></span>
+          </div>
+          <div>
+            <label for="other-expences">Other Expenses (specify): </label><br />
+            <input type="text" name="other-expences" id="other-expences" />
+            <span id="other-expences-err"></span>
+          </div>
+        </div>
+        <div>
+          <label for="bank-account-details"
+            >Bank Account Details (SBI Only)</label
+          >
+          <div>
+            <label for="name-of-branch"
+              >Name of Branch:<span class="starred">*</span></label
+            ><br />
+            <input type="text" name="name-of-branch" id="name-of-branch" />
+            <br />
+            <span class="error" id="name-of-branch-err"></span>
+          </div>
+          <div>
+            <label for="account-holder-name"
+              >Name of Account Holder:<span class="starred">*</span></label
+            ><br />
+            <input
+              type="text"
+              name="account-holder-name"
+              id="account-holder-name"
+            /><br />
+            <span class="error" id="account-holder-name-err"></span>
+          </div>
+          <div>
+            <label for="account-number"
+              >Account Number:<span class="starred">*</span></label
+            ><br />
+            <input
+              type="text"
+              name="account-number"
+              id="account-number"
+            /><br />
+            <span class="error" id="account-number-err"></span>
+          </div>
+          <div>
+            <label for="ifsc-code"
+              >IFSC Code of Branch:<span class="starred">*</span></label
+            ><br />
+            <input type="text" name="ifsc-code" id="ifsc-code" /><br />
+            <span class="error" id="ifsc-code-err"></span>
+          </div>
+        </div>
+
+        <div>
+          <div>
+            <label for="applicant-photo"
+              >Passport size photo:<span class="starred">*</span> </label
+            ><br />
+            <input
+              type="file"
+              name="applicant-photo"
+              id="applicant-photo"
+            /><br />
+            <span class="error" id="applicant-photo-err"></span>
+          </div>
+          <div>
+            <label for="kerala-entrance-rank-list"
+              >Kerala Entrance Rank List:<span class="starred">*</span> </label
+            ><br />
+            <input
+              type="file"
+              name="kerala-entrance-rank-list"
+              id="kerala-entrance-rank-list"
+            />
+            <br />
+            <span class="error" id="kerala-entrance-rank-list-err"></span>
+          </div>
+          <div>
+            <label for="bank-account-pass-book"
+              >Bank Account Pass Book:<span class="starred">*</span> </label
+            ><br />
+            <input
+              type="file"
+              name="bank-account-pass-book"
+              id="bank-account-pass-book"
+            />
+            <br />
+            <span class="error" id="bank-account-pass-book-err"></span>
+          </div>
+        </div>
+        <div>
+          <input type="checkbox" name="declaration" id="declaration" />
+          <label for="declaration">
+            I hearby declare that the information given above is correct.I also
+            declare that i am not availing any other financial assistance for
+            this purpose from any other source.I shall abide by the terms and
+            conditions for sanction of the meric-cum-means scholorship.I shall
+            refund the entire scholarship availed in the event of a finding by
+            the authority that the information presented by me for favouring the
+            sanctioning of scholorship is wrong or false.I have immense pleasure
+            to contribute, in future , to this scholarship fund, as and when my
+            financial position stabilizes.
+          </label>
+        </div>
+        <div>
+          <button id="btn">Submit Application</button>
+        </div>
+      </form>
+    </div>
+    <script>
+      const fullNameErr = document.getElementById("full-name-err");
+      const contactNumberErr = document.getElementById(
+        "contact-phone-number-err"
+      );
+
+      const dateOfBirthErr = document.getElementById("dob-err");
+      const hostellerOrDaysScholarErr = document.getElementById(
+        "hosteller/days-scolar-err"
+      );
+
+      const yearOfAdmissionErr = document.getElementById(
+        "year-of-admission-err"
+      );
+      const residentialAddressErr = document.getElementById(
+        "residential-address-err"
+      );
+      const plusTwoInstitutionAddressErr = document.getElementById(
+        "plus-two-institute-address-err"
+      );
+      const rankErr = document.getElementById(
+        "kerala-entrance-rank-obtained-err"
+      );
+
+      const gpaErr = document.getElementById(
+        "gpa-in-all-semesters-upto-pervious-semester-err"
+      );
+
+      const totalIncomeOfFamilyErr = document.getElementById(
+        "total-income-of-family-err"
+      );
+      const receiptOfBankLoanErr = document.getElementById(
+        "receipt-of-bank-loan-err"
+      );
+
+      const receiptOfOtherFinancialAssistanceErr = document.getElementById(
+        "receipt-of-any-other-financial-assistance-or-scholarship-err"
+      );
+
+      const semesterFeesErr = document.getElementById("semester-fees-err");
+      const examFeesErr = document.getElementById("exam-fees-err");
+
+      const branchNameErr = document.getElementById("name-of-branch-err");
+      const accountHolderNameErr = document.getElementById(
+        "account-holder-name-err"
+      );
+      const accountNumberErr = document.getElementById("account-number-err");
+      const ifscCodeErr = document.getElementById("ifsc-code-err");
+      const applicantPhotoErr = document.getElementById("applicant-photo-err");
+      const keralaEntranceRankListErr = document.getElementById(
+        "kerala-entrance-rank-list-err"
+      );
+      const bankAccountPassBookErr = document.getElementById(
+        "bank-account-pass-book-err"
+      );
+
+      //---------------------------------------------------------------------------
+      const declaration = document.getElementById("declaration");
+      const btn = document.getElementById("btn");
+
+      btn.disabled = true;
+
+      declaration.addEventListener("click", (event) => {
+        btn.disabled ? (btn.disabled = false) : (btn.disabled = true);
+
+        btn.addEventListener("click", async (event) => {
+          event.preventDefault();
+          //-----------------------------------------------------------------------------------
+          const fullName = document.getElementById("full-name").value;
+          const contactNumber = document.getElementById(
+            "contact-phone-number"
+          ).value;
+          const category = document.getElementById("category").value;
+          const gender = document.getElementById("gender").value;
+          const dateOfBirth = document.getElementById("dob").value;
+          const hostellerOrDaysScholar = document.getElementById(
+            "hosteller/days-scolar"
+          ).value;
+          const hostelName = document.getElementById("hostel-name").value;
+          const semester = document.getElementById("semester").value;
+          const branch = document.getElementById("branch").value;
+          const yearOfAdmission =
+            document.getElementById("year-of-admission").value;
+          const residentialAddress = document.getElementById(
+            "residential-address"
+          ).value;
+          const hostelAddress = document.getElementById("hostel-address").value;
+          const plusTwoInstitutionAddress = document.getElementById(
+            "plus-two-institute-address"
+          ).value;
+          const rankFirstChance = document.getElementById("first-chance").value;
+          const rankSecondChance =
+            document.getElementById("second-chance").value;
+          const rankThirdChance = document.getElementById("third-chance").value;
+          const gpaS1 = document.getElementById("gpa-s1").value;
+          const gpaS2 = document.getElementById("gpa-s2").value;
+          const gpaS3 = document.getElementById("gpa-s3").value;
+          const gpaS4 = document.getElementById("gpa-s4").value;
+          const gpaS5 = document.getElementById("gpa-s5").value;
+          const gpaS6 = document.getElementById("gpa-s6").value;
+          const gpaS7 = document.getElementById("gpa-s7").value;
+          const monthAndYearS1 =
+            document.getElementById("month-and-year-s1").value;
+          const monthAndYearS2 =
+            document.getElementById("month-and-year-s2").value;
+          const monthAndYearS3 =
+            document.getElementById("month-and-year-s3").value;
+          const monthAndYearS4 =
+            document.getElementById("month-and-year-s4").value;
+          const monthAndYearS5 =
+            document.getElementById("month-and-year-s5").value;
+          const monthAndYearS6 =
+            document.getElementById("month-and-year-s6").value;
+          const monthAndYearS7 =
+            document.getElementById("month-and-year-s7").value;
+          const noOfBackPapersS1 = document.getElementById(
+            "no-of-back-papers-s1"
+          ).value;
+          const noOfBackPapersS2 = document.getElementById(
+            "no-of-back-papers-s2"
+          ).value;
+          const noOfBackPapersS3 = document.getElementById(
+            "no-of-back-papers-s3"
+          ).value;
+          const noOfBackPapersS4 = document.getElementById(
+            "no-of-back-papers-s4"
+          ).value;
+          const noOfBackPapersS5 = document.getElementById(
+            "no-of-back-papers-s5"
+          ).value;
+          const noOfBackPapersS6 = document.getElementById(
+            "no-of-back-papers-s6"
+          ).value;
+          const noOfBackPapersS7 = document.getElementById(
+            "no-of-back-papers-s7"
+          ).value;
+          const nameOfFather = document.getElementById("name-of-father").value;
+          const ageOfFather = document.getElementById("age-of-father").value;
+          const annualIncomeOfFather = document.getElementById(
+            "annual-income-of-father"
+          ).value;
+          const nameOfMother = document.getElementById("name-of-mother").value;
+          const ageOfMother = document.getElementById("age-of-mother").value;
+          const annualIncomeOfMother = document.getElementById(
+            "annual-income-of-mother"
+          ).value;
+          const otherIncomeSource = document.getElementById(
+            "other-income-source"
+          ).value;
+          const totalIncomeOfFamily = document.getElementById(
+            "total-income-of-family"
+          ).value;
+
+          const receiptOfBankLoan = document.querySelector(
+            'input[name="receipt-of-bank-loan"]:checked'
+          );
+          const receiptOfOtherFinancialAssistance = document.querySelector(
+            'input[name="receipt-of-any-other-financial-assistance-or-scholarship"]:checked'
+          );
+
+          const nameOfAvailingScholorship = document.getElementById(
+            "name-of-availing-scholarship"
+          ).value;
+          const semesterFees = document.getElementById("semester-fees").value;
+          const hostelFees = document.getElementById("hostel-fees").value;
+          const examFees = document.getElementById("exam-fees").value;
+          const bookOrStationaryFees = document.getElementById(
+            "book-or-stationaries-fees"
+          ).value;
+          const otherExpenses = document.getElementById("other-expences").value;
+          const branchName = document.getElementById("name-of-branch").value;
+          const accountHolderName = document.getElementById(
+            "account-holder-name"
+          ).value;
+          const accountNumber = document.getElementById("account-number").value;
+          const ifscCode = document.getElementById("ifsc-code").value;
+          const applicantPhoto = document.getElementById("applicant-photo");
+          const keralaEntranceRankList = document.getElementById(
+            "kerala-entrance-rank-list"
+          );
+          const bankAccountPassBook = document.getElementById(
+            "bank-account-pass-book"
+          );
+
+          //-------------------------------------------
+          const file = document.querySelectorAll("input[type=file]");
+          console.log(file);
+          const fileData = new FormData();
+          for (const f of file) {
+            fileData.append("file", f.files[0]);
+          }
+          //--------------------------------------------------
+
+          fullNameErr.textContent = "";
+          contactNumberErr.textContent = "";
+
+          dateOfBirthErr.textContent = "";
+          hostellerOrDaysScholarErr.textContent = "";
+
+          yearOfAdmissionErr.textContent = "";
+          residentialAddressErr.textContent = "";
+          plusTwoInstitutionAddressErr.textContent = "";
+          rankErr.textContent = "";
+          gpaErr.textContent = "";
+          totalIncomeOfFamilyErr.textContent = "";
+          receiptOfBankLoanErr.textContent = "";
+          receiptOfOtherFinancialAssistanceErr.textContent = "";
+          semesterFeesErr.textContent = "";
+          examFeesErr.textContent = "";
+          branchNameErr.textContent = "";
+          accountHolderNameErr.textContent = "";
+          accountNumberErr.textContent = "";
+          ifscCodeErr.textContent = "";
+          applicantPhotoErr.textContent = "";
+          keralaEntranceRankListErr.textContent = "";
+          bankAccountPassBookErr.textContent = "";
+
+          let isError = false;
+
+          if (!fullName.match(/[a-zA-Z]/g)) {
+            fullNameErr.textContent =
+              "Full name should only contain characters";
+            isError = true;
+          }
+
+          if (fullName.length > 255) {
+            fullNameErr.textContent =
+              "Full name must be less than 20 characters";
+            isError = true;
+          }
+
+          if (fullName.length < 5) {
+            fullNameErr.textContent =
+              "Full name must be greater than 5 characters";
+            isError = true;
+          }
+
+          if (!fullName) {
+            fullNameErr.textContent = "Please enter  full name";
+            isError = true;
+          }
+
+          console.log("1", isError);
+
+          if (contactNumber.length != 10) {
+            contactNumberErr.textContent =
+              "Contact number should contain 10 digits";
+            isError = true;
+          }
+
+          if (isNaN(contactNumber)) {
+            contactNumberErr.textContent =
+              "Contact Number should only contain digits";
+            isError = true;
+          }
+
+          if (!contactNumber) {
+            contactNumberErr.textContent = "Please enter  contact number";
+            isError = true;
+          }
+          console.log("2", isError);
+          if (!dob) {
+            dobErr.textContent = "Please enter date of birth";
+            isError = true;
+          }
+
+          if (isNaN(yearOfAdmission)) {
+            yearOfAdmissionErr.textContent =
+              "Year of admission should only contain digits";
+            isError = true;
+          }
+
+          if (!yearOfAdmission) {
+            yearOfAdmissionErr.textContent = "Please enter year of admission";
+            isError = true;
+          }
+          console.log("3", isError);
+          if (residentialAddress.length > 255) {
+            residentialAddressErr.textContent =
+              "Residential address must be less than 255 characters";
+            isError = true;
+          }
+
+          if (residentialAddress.length < 20) {
+            residentialAddressErr.textContent =
+              "Residential address must be greater than 25 characters";
+            isError = true;
+          }
+
+          if (!residentialAddress) {
+            residentialAddressErr.textContent =
+              "Please enter residential address";
+            isError = true;
+          }
+          console.log("4", isError);
+
+          if (plusTwoInstitutionAddress.length > 255) {
+            plusTwoInstitutionAddressErr.textContent =
+              "Plus two institution address must be less than 255 characters";
+            isError = true;
+          }
+
+          if (plusTwoInstitutionAddress.length < 20) {
+            plusTwoInstitutionAddressErr.textContent =
+              "Plus two institution address must be greater than 25 characters";
+            isError = true;
+          }
+
+          if (!plusTwoInstitutionAddress) {
+            plusTwoInstitutionAddressErr.textContent =
+              "Please enter plus two institution";
+            isError = true;
+          }
+
+          console.log("4", isError);
+          if (
+            isNaN(rankFirstChance) ||
+            isNaN(rankSecondChance) ||
+            isNaN(rankThirdChance)
+          ) {
+            rankErr.textContent = "Entrance rank should only contain digits";
+            isError = true;
+          }
+
+          if (!rankFirstChance) {
+            rankErr.textContent = "Please enter entrance rank";
+            isError = true;
+          }
+          console.log("5", isError);
+          if (
+            isNaN(gpaS1) ||
+            isNaN(gpaS2) ||
+            isNaN(gpaS3) ||
+            isNaN(gpaS4) ||
+            isNaN(gpaS5) ||
+            isNaN(gpaS6) ||
+            isNaN(gpaS7)
+          ) {
+            gpaErr.textContent = "GPA should only contain digits";
+            isError = true;
+          }
+
+          if (
+            !gpaS1 &&
+            !gpaS2 &&
+            !gpaS3 &&
+            !gpaS4 &&
+            !gpaS5 &&
+            !gpaS6 &&
+            !gpaS7
+          ) {
+            gpaErr.textContent = "Please enter GPA";
+            isError = true;
+          }
+
+          console.log("6", isError);
+          if (isNaN(totalIncomeOfFamily)) {
+            totalIncomeOfFamilyErr.textContent =
+              "Total income of family should only contain digits";
+            isError = true;
+          }
+
+          if (!totalIncomeOfFamily) {
+            totalIncomeOfFamilyErr.textContent =
+              "Please enter total income of family";
+            isError = true;
+          }
+
+          console.log("7", isError);
+          if (isNaN(semesterFees)) {
+            semesterFeesErr.textContent =
+              "Semester fee should only contain digits";
+            isError = true;
+          }
+
+          if (!semesterFees) {
+            semesterFeesErr.textContent = "Please enter Semester fee";
+            isError = true;
+          }
+
+          console.log("8", isError);
+          if (isNaN(examFees)) {
+            examFeesErr.textContent = "Exam fee should only contain digits";
+            isError = true;
+          }
+
+          if (!examFees) {
+            examFeesErr.textContent = "Please enter exam fee ";
+            isError = true;
+          }
+
+          console.log("9", isError);
+          if (!branchName) {
+            branchNameErr.textContent = "Please enter branch name";
+            isError = true;
+          }
+
+          console.log("10", isError);
+          if (!accountHolderName) {
+            accountHolderNameErr.textContent =
+              "Please enter account holder name";
+            isError = true;
+          }
+          console.log("11", isError);
+          if (isNaN(accountNumber)) {
+            accountNumberErr.textContent =
+              "Account number should only contain digits";
+            isError = true;
+          }
+
+          console.log("12", isError);
+
+          if (!accountNumber) {
+            accountNumberErr.textContent = "Please enter account number";
+            isError = true;
+          }
+
+          console.log("13", isError);
+          if (!ifscCode) {
+            ifscCodeErr.textContent = "Please enter IFSC code ";
+            isError = true;
+          }
+
+          console.log("14", isError);
+
+          if (!receiptOfBankLoan || receiptOfBankLoan == "") {
+            receiptOfBankLoanErr.textContent = "Please select an yes / no";
+            isError = true;
+          }
+
+          if (
+            !receiptOfOtherFinancialAssistance ||
+            receiptOfOtherFinancialAssistance == ""
+          ) {
+            receiptOfOtherFinancialAssistanceErr.textContent =
+              "Please select an yes / no";
+            isError = true;
+          }
+
+          console.log("15", isError);
+          //file input --------------------------------------------------------
+
+          if (!applicantPhoto.files || applicantPhoto.files.length === 0) {
+            applicantPhotoErr.textContent = "Please select a file.";
+            isError = true;
+          }
+
+          // }
+          //-----------------------------------------------------------------------------------
+          if (
+            !keralaEntranceRankList.files ||
+            keralaEntranceRankList.files.length === 0
+          ) {
+            keralaEntranceRankListErr.textContent = "Please select a file.";
+            isError = true;
+          }
+
+          //--------------------------------------------------------------------
+          if (
+            !bankAccountPassBook.files ||
+            bankAccountPassBook.files.length === 0
+          ) {
+            bankAccountPassBookErr.textContent = "Please select a file.";
+            isError = true;
+          }
+
+          console.log("16", isError);
+          //-------------------------------------------------------------------
+
+          console.log(isError);
+
+          let isBankLoan = false;
+          let isOtherSources = false;
+
+          // receiptOfBankLoan.value
+          //   ? (isBankLoan.value = true)
+          //   : (isBankLoan.value = false);
+
+          // receiptOfOtherFinancialAssistance.value
+          //   ? (isOtherSources.value = true)
+          //   : (isOtherSources.value = false);
+
+          if (!isError) {
+            console.log("clicked");
+
+            try {
+              const res = await fetch("/student/register", {
+                method: "POST",
+                body: JSON.stringify({
+                  fullName,
+                  contactNumber,
+                  category,
+                  gender,
+                  dateOfBirth,
+                  hostellerOrDaysScholar,
+                  hostelName,
+                  semester,
+                  branch,
+                  yearOfAdmission,
+                  residentialAddress,
+                  hostelAddress,
+                  plusTwoInstitutionAddress,
+                  rankFirstChance,
+                  rankSecondChance,
+                  rankThirdChance,
+                  gpaS1,
+                  gpaS2,
+                  gpaS3,
+                  gpaS4,
+                  gpaS5,
+                  gpaS6,
+                  gpaS7,
+                  monthAndYearS1,
+                  monthAndYearS2,
+                  monthAndYearS3,
+                  monthAndYearS4,
+                  monthAndYearS5,
+                  monthAndYearS6,
+                  monthAndYearS7,
+                  noOfBackPapersS1,
+                  noOfBackPapersS2,
+                  noOfBackPapersS3,
+                  noOfBackPapersS4,
+                  noOfBackPapersS5,
+                  noOfBackPapersS6,
+                  noOfBackPapersS7,
+                  nameOfFather,
+                  nameOfMother,
+                  ageOfFather,
+                  ageOfMother,
+                  annualIncomeOfFather,
+                  annualIncomeOfMother,
+                  otherIncomeSource,
+                  totalIncomeOfFamily,
+                  isBankLoan,
+                  isOtherSources,
+                  nameOfAvailingScholorship,
+                  semesterFees,
+                  examFees,
+                  hostelFees,
+                  bookOrStationaryFees,
+                  otherExpenses,
+                  branchName,
+                  accountHolderName,
+                  accountNumber,
+                  ifscCode,
+                  fileData,
+                }),
+                headers: { "Content-Type": "multipart/form-data" },
+              });
+              const data = await res.json();
+              console.log(data);
+
+              if (data.errors) {
+              }
+              if (data.blog) {
+                location.assign("/");
+              }
+            } catch (err) {
+              console.log(err);
+            }
+          }
+        });
+      });
+    </script>
+    <%- include('../partials/footer.ejs')%>
+  </body>
+</html>

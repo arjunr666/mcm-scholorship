@@ -169,6 +169,11 @@ const applicationSchema = new Schema(
     },
     expectedExpenses: expenses,
     bankAccountDetails: bankAccount,
+    applicantPhoto: {
+      filename: String,
+      originalName: String,
+      contentType: String,
+    },
     bankPassbook: {
       filename: String,
       originalName: String,
@@ -177,10 +182,12 @@ const applicationSchema = new Schema(
     incomeCertificate: {
       filename: String,
       contentType: String,
+      originalName: String,
     },
     entraceRanklist: {
       filename: String,
       contentType: String,
+      originalName: String,
     },
   },
 

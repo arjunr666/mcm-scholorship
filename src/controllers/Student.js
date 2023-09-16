@@ -202,9 +202,47 @@ const getApplicationFormTwo = (req, res) => {
   });
 };
 
-// const postApplicationFormTwo = async (req, res) => {
-  
-// };
+const postApplicationFormTwo = async (req, res) => {
+  const { id } = req.body;
+
+  // console.log(req.files);
+
+  try {
+    const application = await Application.updateOne(
+      { _id: id },
+      {
+        $set: {
+          applicantPhoto: {
+            filename: req.files.applicant_photo[0].filename,
+            originalName: req.files.applicant_photo[0].originalname,
+            contentType: req.files.applicant_photo[0].mimetype,
+          },
+          bankPassbook: {
+            filename: req.files.kerala_entrance_rank_list[0].filename,
+            originalName: req.files.kerala_entrance_rank_list[0].originalname,
+            contentType: req.files.kerala_entrance_rank_list[0].mimetype,
+          },
+          incomeCertificate: {
+            filename: req.files.bank_account_pass_book[0].filename,
+            originalName: req.files.bank_account_pass_book[0].originalname,
+            contentType: req.files.bank_account_pass_book[0].mimetype,
+          },
+          entraceRanklist: {
+            filename: req.files.income_certificate[0].filename,
+            originalName: req.files.income_certificate[0].originalaame,
+            contentType: req.files.income_certificate[0].mimetype,
+          },
+        },
+      }
+    );
+
+
+    res.status(200).json({ application: id });
+  } catch (err) {
+    console.log(err);
+    res.status(500).json({ error: err });
+  }
+};
 
 const getApplicationConfirmation = async (req, res) => {
   const id = String(req.params.id);
@@ -239,7 +277,7 @@ module.exports = {
   getApplicationFormOne,
   postApplicationFormOne,
   getApplicationFormTwo,
- // postApplicationFormTwo,
+  postApplicationFormTwo,
   getApplicationConfirmation,
   postApplicationConfirmation,
   getApplicationUpdate,

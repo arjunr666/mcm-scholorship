@@ -20,9 +20,6 @@ const facultySchema = new Schema(
     },
     middleName: {
       type: String,
-      minlength: [1, "Last name cannot be empty"],
-      maxlength: [50, "Last shout not exceed 50 characters"],
-      validate: [isAlpha, "Last name should not contain numbers"],
     },
     lastName: {
       type: String,
@@ -49,17 +46,17 @@ const facultySchema = new Schema(
       required: [true, "Please enter a passowrd"],
       minlength: [10, "Password should be atleast 10 characters"],
       maxlength: [25, "Password should not exceed 25 characters"],
-      validate: [isStrongPassword, "Please enter a strong password"],
     },
     phone: {
       type: Number,
+      minlength: [10, "Password should be atleast 10 number"],
+      maxlength: [10, "Password should not exceed 10 number"],
       required: [true, "Please enter a phone number"],
       unique: true,
-      validate: [isMobilePhone, "Please enter a valid phone number"],
     },
     role: {
       type: String,
-      enum: ["hod", "coordinator", "advisor", "admin"],
+      enum: ["faculty", "hod", "coordinator", "advisor", "admin"],
     },
     department: {
       type: String,

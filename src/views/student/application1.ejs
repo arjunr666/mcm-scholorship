@@ -7,7 +7,7 @@
     <div id="form">
       <h2>Regsitration Form</h2>
       <form
-        action="/student/register"
+        action="/student/register/1"
         method="POST"
         enctype="multipart/form-data"
       >
@@ -509,44 +509,6 @@
             <span class="error" id="ifsc-code-err"></span>
           </div>
         </div>
-
-        <div>
-          <div>
-            <label for="applicant-photo"
-              >Passport size photo:<span class="starred">*</span> </label
-            ><br />
-            <input
-              type="file"
-              name="applicant-photo"
-              id="applicant-photo"
-            /><br />
-            <span class="error" id="applicant-photo-err"></span>
-          </div>
-          <div>
-            <label for="kerala-entrance-rank-list"
-              >Kerala Entrance Rank List:<span class="starred">*</span> </label
-            ><br />
-            <input
-              type="file"
-              name="kerala-entrance-rank-list"
-              id="kerala-entrance-rank-list"
-            />
-            <br />
-            <span class="error" id="kerala-entrance-rank-list-err"></span>
-          </div>
-          <div>
-            <label for="bank-account-pass-book"
-              >Bank Account Pass Book:<span class="starred">*</span> </label
-            ><br />
-            <input
-              type="file"
-              name="bank-account-pass-book"
-              id="bank-account-pass-book"
-            />
-            <br />
-            <span class="error" id="bank-account-pass-book-err"></span>
-          </div>
-        </div>
         <div>
           <input type="checkbox" name="declaration" id="declaration" />
           <label for="declaration">
@@ -562,7 +524,7 @@
           </label>
         </div>
         <div>
-          <button id="btn">Submit Application</button>
+          <button id="btn">Next</button>
         </div>
       </form>
     </div>
@@ -808,7 +770,7 @@
             isError = true;
           }
 
-          console.log("1", isError);
+          // console.log("1", isError);
 
           if (contactNumber.length != 10) {
             contactNumberErr.textContent =
@@ -826,7 +788,7 @@
             contactNumberErr.textContent = "Please enter  contact number";
             isError = true;
           }
-          console.log("2", isError);
+          // console.log("2", isError);
           if (!dob) {
             dobErr.textContent = "Please enter date of birth";
             isError = true;
@@ -842,7 +804,7 @@
             yearOfAdmissionErr.textContent = "Please enter year of admission";
             isError = true;
           }
-          console.log("3", isError);
+          // console.log("3", isError);
           if (residentialAddress.length > 255) {
             residentialAddressErr.textContent =
               "Residential address must be less than 255 characters";
@@ -860,7 +822,7 @@
               "Please enter residential address";
             isError = true;
           }
-          console.log("4", isError);
+          // console.log("4", isError);
 
           if (plusTwoInstitutionAddress.length > 255) {
             plusTwoInstitutionAddressErr.textContent =
@@ -880,7 +842,7 @@
             isError = true;
           }
 
-          console.log("4", isError);
+          // console.log("4", isError);
           if (
             isNaN(rankFirstChance) ||
             isNaN(rankSecondChance) ||
@@ -894,7 +856,7 @@
             rankErr.textContent = "Please enter entrance rank";
             isError = true;
           }
-          console.log("5", isError);
+          // console.log("5", isError);
           if (
             isNaN(gpaS1) ||
             isNaN(gpaS2) ||
@@ -921,7 +883,7 @@
             isError = true;
           }
 
-          console.log("6", isError);
+          // console.log("6", isError);
           if (isNaN(totalIncomeOfFamily)) {
             totalIncomeOfFamilyErr.textContent =
               "Total income of family should only contain digits";
@@ -934,7 +896,7 @@
             isError = true;
           }
 
-          console.log("7", isError);
+          // console.log("7", isError);
           if (isNaN(semesterFees)) {
             semesterFeesErr.textContent =
               "Semester fee should only contain digits";
@@ -946,7 +908,7 @@
             isError = true;
           }
 
-          console.log("8", isError);
+          // console.log("8", isError);
           if (isNaN(examFees)) {
             examFeesErr.textContent = "Exam fee should only contain digits";
             isError = true;
@@ -957,39 +919,39 @@
             isError = true;
           }
 
-          console.log("9", isError);
+          // console.log("9", isError);
           if (!branchName) {
             branchNameErr.textContent = "Please enter branch name";
             isError = true;
           }
 
-          console.log("10", isError);
+          // console.log("10", isError);
           if (!accountHolderName) {
             accountHolderNameErr.textContent =
               "Please enter account holder name";
             isError = true;
           }
-          console.log("11", isError);
+          // console.log("11", isError);
           if (isNaN(accountNumber)) {
             accountNumberErr.textContent =
               "Account number should only contain digits";
             isError = true;
           }
 
-          console.log("12", isError);
+          // console.log("12", isError);
 
           if (!accountNumber) {
             accountNumberErr.textContent = "Please enter account number";
             isError = true;
           }
 
-          console.log("13", isError);
+          // console.log("13", isError);
           if (!ifscCode) {
             ifscCodeErr.textContent = "Please enter IFSC code ";
             isError = true;
           }
 
-          console.log("14", isError);
+          // console.log("14", isError);
 
           if (!receiptOfBankLoan || receiptOfBankLoan == "") {
             receiptOfBankLoanErr.textContent = "Please select an yes / no";
@@ -1005,54 +967,24 @@
             isError = true;
           }
 
-          console.log("15", isError);
-          //file input --------------------------------------------------------
-
-          if (!applicantPhoto.files || applicantPhoto.files.length === 0) {
-            applicantPhotoErr.textContent = "Please select a file.";
-            isError = true;
-          }
-
-          // }
-          //-----------------------------------------------------------------------------------
-          if (
-            !keralaEntranceRankList.files ||
-            keralaEntranceRankList.files.length === 0
-          ) {
-            keralaEntranceRankListErr.textContent = "Please select a file.";
-            isError = true;
-          }
-
-          //--------------------------------------------------------------------
-          if (
-            !bankAccountPassBook.files ||
-            bankAccountPassBook.files.length === 0
-          ) {
-            bankAccountPassBookErr.textContent = "Please select a file.";
-            isError = true;
-          }
-
-          console.log("16", isError);
-          //-------------------------------------------------------------------
-
           console.log(isError);
 
           let isBankLoan = false;
           let isOtherSources = false;
 
-          // receiptOfBankLoan.value
-          //   ? (isBankLoan.value = true)
-          //   : (isBankLoan.value = false);
+          receiptOfBankLoan.value == "true"
+            ? (isBankLoan.value = true)
+            : (isBankLoan.value = false);
 
-          // receiptOfOtherFinancialAssistance.value
-          //   ? (isOtherSources.value = true)
-          //   : (isOtherSources.value = false);
+          receiptOfOtherFinancialAssistance.value == "true"
+            ? (isOtherSources.value = true)
+            : (isOtherSources.value = false);
 
           if (!isError) {
             console.log("clicked");
 
             try {
-              const res = await fetch("/student/register", {
+              const res = await fetch("/student/register/1", {
                 method: "POST",
                 body: JSON.stringify({
                   fullName,
@@ -1112,17 +1044,16 @@
                   accountHolderName,
                   accountNumber,
                   ifscCode,
-                  fileData,
                 }),
-                headers: { "Content-Type": "multipart/form-data" },
+                headers: { "Content-Type": "application/json" },
               });
               const data = await res.json();
               console.log(data);
 
               if (data.errors) {
               }
-              if (data.blog) {
-                location.assign("/");
+              if (data.application) {
+                location.assign(`/student/register/2/${data.application}`);
               }
             } catch (err) {
               console.log(err);

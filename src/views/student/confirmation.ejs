@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%- include('../partials/head.ejs') %>
+  <body>
+    <%- include('../partials/nav.ejs') %>
+
+    <div class="content">
+      <p>
+        Name of the Applicant:
+        <span class="data"><%= application.fullName %></span>
+      </p>
+      <p>
+        Contact Phone / Mobile no:<span class="data">
+          <%= application.phone %></span
+        >
+      </p>
+      <p>Category: <span class="data"><%= application.category %></span></p>
+      <p>Gender:<span class="data"><%= application.gender %></span></p>
+      <p>Date of Birth:<span class="data"><%= application.dob %></span></p>
+      <p>
+        Hosteller/Days Scholar:<span class="data"
+          ><% if(application.hostellerOrDaysScholar) { %> Hosteller<% } else {
+          %>Days Scholar<% }%></span
+        >
+      </p>
+      <p>
+        If Hosteller , name of Hostel:
+        <span class="data"><%= application.hostelName %></span>
+      </p>
+      <p>Semester: <span class="data"><%= application.semester %></span></p>
+      <p>
+        Branch of Study: <span class="data"><%= application.branch %></span>
+      </p>
+
+      <p>
+        Year of Admission:
+        <span class="data"><%= application.yearOfAdmission %></span>
+      </p>
+      <p>
+        Residential Address:
+        <span class="data"><%= application.residentialAddress %></span>
+      </p>
+      <p>
+        Hostel Address:
+        <span class="data"><%= application.hostelAddress %></span>
+      </p>
+      <p>
+        Address of the Institute studied for "Plus Two":
+        <span class="data"><%= application.plusTwoInstitutionAddress %></span>
+      </p>
+      <p>Kerala Entrance Rank Obtained (Enclose proof)</p>
+      <p>
+        First Chance:
+        <span class="data"><%= application.entranceRankInChanceOne %></span>
+      </p>
+      <p>
+        Second Chance:
+        <span class="data"><%= application.entranceRankInChanceTwo %></span>
+      </p>
+      <p>
+        Third Chance:
+        <span class="data"><%= application.entranceRankInChanceThree %></span>
+      </p>
+      <p>GPA's in all semesters upto previous semester</p>
+      <table border="1">
+        <!-- <% if(application.cgpaBySemester.length > 0) %> <% application.cgpaBySemester.forEach( cgpa =>{ %> cgpa <% }) %> -->
+        <tr>
+          <th>Semester</th>
+          <td>
+            <% if(application.cgpaBySemester[0].semester) { %> <%=
+            application.cgpaBySemester[0].semester %> <% }else {%> <% }%>
+          </td>
+
+          <td>
+            <% if(application.cgpaBySemester[1].semester) { %> <%=
+            application.cgpaBySemester[1].semester %> <% }else {%> <% }%>
+          </td>
+
+          <td>
+            <% if(application.cgpaBySemester[2].semester) { %> <%=
+            application.cgpaBySemester[2].semester %> <% }else {%> <% }%>
+          </td>
+
+          <td>
+            <% if(application.cgpaBySemester[3].semester) { %> <%=
+            application.cgpaBySemester[3].semester %> <% }else {%> <% }%>
+          </td>
+          <td>
+            <% if(application.cgpaBySemester[4].semester) { %> <%=
+            application.cgpaBySemester[4].semester %> <% }else {%> <% }%>
+          </td>
+          <td>
+            <% if(application.cgpaBySemester[5].semester) { %> <%=
+            application.cgpaBySemester[5].semester %> <% }else {%> <% }%>
+          </td>
+          <td>
+            <% if(application.cgpaBySemester[6].semester) { %> <%=
+            application.cgpaBySemester[6].semester %> <% }else {%> <% }%>
+          </td>
+        </tr>
+
+        <tr>
+          <th>GPA / Total Mark / Sessional Mark</th>
+          <td>
+            <% if(application.cgpaBySemester[0].cgpa) { %> <%=
+            application.cgpaBySemester[0].cgpa %> <% }else {%> <% }%>
+          </td>
+          <td>
+            <% if(application.cgpaBySemester[1].cgpa) {%> <%=
+            application.cgpaBySemester[1].cgpa %> <% }else {%><% }%>
+          </td>
+          <td>
+            <% if(application.cgpaBySemester[2].cgpa) {%> <%=
+            application.cgpaBySemester[2].cgpa %> <% }else {%><% }%>
+          </td>
+          <td>
+            <% if(application.cgpaBySemester[3].cgpa) {%> <%=
+            application.cgpaBySemester[3].cgpa %> <% }else {%><% }%>
+          </td>
+          <td>
+            <% if(application.cgpaBySemester[4].cgpa) {%> <%=
+            application.cgpaBySemester[4].cgpa %> <% }else {%><% }%>
+          </td>
+          <td>
+            <% if(application.cgpaBySemester[5].cgpa) {%> <%=
+            application.cgpaBySemester[5].cgpa %> <% }else {%><% }%>
+          </td>
+          <td>
+            <% if(application.cgpaBySemester[6].cgpa) {%> <%=
+            application.cgpaBySemester[6].cgpa %> <% }else {%> <% }%>
+          </td>
+        </tr>
+        <tr>
+          <th>Month and year of Appearance</th>
+          <td>
+            <% if(application.cgpaBySemester[0].monthAndYear) {%> <%=
+            application.cgpaBySemester[0].monthAndYear %> <% }else {%> <% }%>
+          </td>
+          <td>
+            <% if(application.cgpaBySemester[1].monthAndYear) {%> <%=
+            application.cgpaBySemester[1].monthAndYear %> <% }else {%> <% }%>
+          </td>
+          <td>
+            <% if(application.cgpaBySemester[2].monthAndYear) {%> <%=
+            application.cgpaBySemester[2].monthAndYear %> <% }else {%> <% }%>
+          </td>
+          <td>
+            <% if(application.cgpaBySemester[3].monthAndYear) {%> <%=
+            application.cgpaBySemester[3].monthAndYear %> <% }else {%> <% }%>
+          </td>
+          <td>
+            <% if(application.cgpaBySemester[4].monthAndYear) {%> <%=
+            application.cgpaBySemester[4].monthAndYear %> <% }else {%> <% }%>
+          </td>
+          <td>
+            <% if(application.cgpaBySemester[5].monthAndYear) {%> <%=
+            application.cgpaBySemester[5].monthAndYear %> <% }else {%> <% }%>
+          </td>
+          <td>
+            <% if(application.cgpaBySemester[6].monthAndYear) {%> <%=
+            application.cgpaBySemester[6].monthAndYear %> <% }else {%> <% }%>
+          </td>
+        </tr>
+        <tr>
+          <th>No.of Back Papers</th>
+          <td>
+            <% if(!(application.cgpaBySemester[0].noOfBackPapers == 0 )) { %>
+            <%= application.cgpaBySemester[0].noOfBackPapers %> hai <% }else {%>
+            0 <% }%>
+          </td>
+
+          <td>
+            <% if(!(application.cgpaBySemester[0].noOfBackPapers == 0 )) {%> <%=
+            application.cgpaBySemester[1].noOfBackPapers %> <% }else {%>0 <% }%>
+          </td>
+          <td>
+            <% if(!(application.cgpaBySemester[0].noOfBackPapers == 0 )) {%> <%=
+            application.cgpaBySemester[2].noOfBackPapers %> <% }else {%> 0 <%
+            }%>
+          </td>
+          <td>
+            <% if(!(application.cgpaBySemester[0].noOfBackPapers == 0 )) {%> <%=
+            application.cgpaBySemester[3].noOfBackPapers %> <% }else {%> 0 <%
+            }%>
+          </td>
+          <td>
+            <% if(!(application.cgpaBySemester[0].noOfBackPapers == 0 )) {%> <%=
+            application.cgpaBySemester[4].noOfBackPapers %> <% }else {%>0 <% }%>
+          </td>
+          <td>
+            <% if(!(application.cgpaBySemester[0].noOfBackPapers == 0 )) {%> <%=
+            application.cgpaBySemester[5].noOfBackPapers %> <% }else {%> 0 <%
+            }%>
+          </td>
+          <td>
+            <% if(!(application.cgpaBySemester[0].noOfBackPapers == 0 )) {%> <%=
+            application.cgpaBySemester[6].noOfBackPapers %> <% }else {%> 0 <%
+            }%>
+          </td>
+        </tr>
+      </table>
+      <table border="1">
+        <tr>
+          <th>Income details of Family</th>
+          <th>Name</th>
+          <th>Age</th>
+          <th>Annual Income</th>
+        </tr>
+
+        <% if(application.incomeDetailsOfFamily.length > 0) %> <%
+        application.incomeDetailsOfFamily.forEach( income =>{ %> <%
+        if(income.annualIncome) {%>
+        <tr>
+          <td><%= income.relationWithStudent %></td>
+          <td><%= income.name %></td>
+          <td><%= income.age %></td>
+          <td><%= income.annualIncome %></td>
+        </tr>
+        <% } %> <% }) %>
+      </table>
+      <p>
+        Income from any other source:
+        <span class="data"><%= application.anyOtherIncomeSources %></span>
+      </p>
+      <p>
+        Total Income of Family:
+        <span class="data"><%= application.totalIncomeOfFamily %></span>
+      </p>
+      <p>
+        Receipt of any Bank Loan:
+        <span class="data"
+          ><% if(application.receiptOfAnyBankLoan) { %> Yes<% } else { %>No<%
+          }%></span
+        >
+      </p>
+      <p>
+        Receipt of any other Financial Assistance/Scholarship (Yes/No):
+        <span class="data"
+          ><% if(application.receiptOfAnyOtherFinancialAssistance) { %> Yes<% }
+          else { %>No<% }%></span
+        >
+      </p>
+      <p>Expected expenses for the accademic year</p>
+      <p>
+        Semester fees / year:
+        <span class="data"
+          ><%= application.expectedExpenses.expectedSemFee %></span
+        >
+      </p>
+      <p>
+        Hostel fees / year:
+        <span class="data"
+          ><%= application.expectedExpenses.expectedHostelFee %></span
+        >
+      </p>
+      <p>
+        Exam fees / year:
+        <span class="data"
+          ><%= application.expectedExpenses.expectedExamFee %></span
+        >
+      </p>
+      <p>
+        Book/Stationaries required / year:
+        <span class="data"
+          ><%= application.expectedExpenses.bookStationariesFee %></span
+        >
+      </p>
+
+      <p>
+        Other Expences (specify):
+        <span class="data"
+          ><%= application.expectedExpenses.otherExpences %></span
+        >
+      </p>
+      <p>Bank Account Details(SBI Only)</p>
+      <p>
+        Name of Branch:
+        <span class="data"
+          ><%= application.bankAccountDetails.nameOfBranch %></span
+        >
+      </p>
+      <p>
+        Name of Account Holder:
+        <span class="data"
+          ><%= application.bankAccountDetails.nameOfAccountHolder %></span
+        >
+      </p>
+      <p>
+        Account Number:
+        <span class="data"
+          ><%= application.bankAccountDetails.accountNumber %></span
+        >
+      </p>
+      <p>
+        IFSC Code:
+        <span class="data"><%= application.bankAccountDetails.ifsc %></span>
+      </p>
+
+      <input type="hidden" id="id" value="<%= application._id%> " />
+      <!-- <a href="/student/register/confirm-application/<%= application._id%>">Confirm</a>
+      <a href="/student/register/update-application/<%= application._id%>">Edit</a> -->
+      <button id="confirm">Confirm</button>
+      <button id="edit">Edit</button>
+    </div>
+    <script>
+      const id = document.getElementById("id");
+      const confirmBtn = document.getElementById("confirm");
+      const editBtn = document.getElementById("edit");
+
+      confirmBtn.addEventListener("click", async (req, res) => {
+        try {
+          const res = await fetch("/student/register/confirm-application", {
+            method: "POST",
+            body: JSON.stringify({ id }),
+            headers: { "Content-Type": "application/json" },
+          });
+
+          const data = await res.json();
+          if(data.status){
+            location.assign("/");
+          }
+        } catch (err) {}
+      });
+
+      editBtn.addEventListener("click", async (req,res) => {
+        
+        location.assign(`/student/register/update-application/${id}`)
+        
+      });
+    </script>
+    <%- include('../partials/footer.ejs')%>
+  </body>
+</html>

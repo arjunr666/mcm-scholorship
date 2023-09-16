@@ -5,6 +5,9 @@ const Faculty = require("../models/Faculty");
 const requireAuth = (req, res, next) => {
   const token = req.cookies.jwt;
 
+
+  console.log(process.env.secret);
+  
   if (token) {
     jwt.verify(token, process.env.secret, (err, decodedToken) => {
       if (err) {

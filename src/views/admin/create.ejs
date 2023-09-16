@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%- include('../partials/head.ejs') %>
+  <body>
+    <%- include('../partials/nav.ejs') %>
+
+    <div>
+      <form>
+        <div>
+          <label for="first-name">First Name</label>
+          <input type="text" name="first-name" id="first-name" />
+          <span id="first-name-err"></span>
+        </div>
+        <div>
+          <label for="middle-name">Middle Name</label>
+          <input type="text" name="middle-name" id="middle-name" />
+          <span id="middle-name-err"></span>
+        </div>
+        <div>
+          <label for="last-name">Last Name</label>
+          <input type="text" name="last-name" id="last-name" />
+          <span id="last-name-err"></span>
+        </div>
+        <div>
+          <label for="employee-number">Employee Number</label>
+          <input type="text" name="employee-number" id="employee-number" />
+          <span id="employee-number-err"></span>
+        </div>
+        <div>
+          <label for="email">Email Id</label>
+          <input type="text" name="email" id="email" />
+          <span id="email-err"></span>
+        </div>
+        <div>
+          <label for="phone">Phone Number</label>
+          <input type="text" name="phone" id="phone" />
+          <span id="phone-err"></span>
+        </div>
+        <div>
+          <label for="password">Password</label>
+          <input type="password" name="password" id="password" />
+          <span id="password-err"></span>
+        </div>
+        <div>
+          <label for="role">Role</label>
+          <select name="role" id="role">
+            <option value="faculty">Faculty</option>
+            <option value="advisor">Advisor</option>
+            <option value="hod">HOD</option>
+            <option value="coordinator">Coordinator</option>
+          </select>
+          <span id="role-err"></span>
+        </div>
+        <div>
+          <label for="department">Department</label>
+          <select name="department" id="department">
+            <option value="cs">CS</option>
+            <option value="ms">MS</option>
+            <option value="eee">EEE</option>
+            <option value="c">C</option>
+            <option value="mca">MCA</option>
+            <option value="chem">Chemistry</option>
+            <option value="arch">Architecture</option>
+            <option value="mtech">MTech</option>
+            <option value="mplan">MPlan</option>
+            <option value="march">MArch</option>
+          </select>
+          <span id="department-err"></span>
+        </div>
+        <div>
+          <button id="btn">Submit</button>
+        </div>
+      </form>
+    </div>
+    <script>
+      const btn = document.getElementById("btn");
+      const firstNameErr = document.getElementById("first-name-err");
+      const middleNameErr = document.getElementById("middle-name-err");
+      const lastNameErr = document.getElementById("last-name-err");
+      const employeeNumberErr = document.getElementById("employee-number-err");
+      const emailErr = document.getElementById("email-err");
+      const phoneErr = document.getElementById("phone-err");
+      const passwordErr = document.getElementById("password-err");
+      const roleErr = document.getElementById("role-err");
+      const departmentErr = document.getElementById("department-err");
+
+      btn.addEventListener("click", async (event) => {
+        event.preventDefault();
+
+        firstNameErr.textContent = "";
+        middleNameErr.textContent = "";
+        lastNameErr.textContent = "";
+        employeeNumberErr.textContent = "";
+        emailErr.textContent = "";
+        phoneErr.textContent = "";
+        passwordErr.textContent = "";
+        roleErr.textContent = "";
+        departmentErr.textContent = "";
+
+        const firstName = document.getElementById("first-name").value;
+        const lastName = document.getElementById("last-name").value;
+        const middleName = document.getElementById("middle-name").value;
+        const employeeNumber = document.getElementById("employee-number").value;
+        const email = document.getElementById("email").value;
+        const phone = document.getElementById("phone").value;
+        const password = document.getElementById("password").value;
+        const role = document.getElementById("role").value;
+        const department = document.getElementById("department").value;
+
+        let isError = false;
+
+        if (!firstName) {
+          isError = true;
+          firstNameErr.textContent = "Please enter first name";
+        }
+        if (!lastName) {
+          isError = true;
+          lastName.textContent = "Please enter last name";
+        }
+        if (!employeeNumber) {
+          isError = true;
+          employeeNumberErr.textContent = "Please enter employee number";
+        }
+        if (!email) {
+          isError = true;
+          emailErr.textContent = "Please enter email id";
+        }
+        if (!phone) {
+          isError = true;
+          phoneErr.textContent = "Please enter mobile number";
+        }
+        if (!password) {
+          isError = true;
+          passwordErr.textContent = "Please enter a password";
+        }
+        if (!role) {
+          isError = true;
+          passwordErr.textContent = "Please enter a password";
+        }
+        if (!password) {
+          isError = true;
+          passwordErr.textContent = "Please enter a password";
+        }
+
+        if (!role) {
+          isError = true;
+          roleErr.textContent = "Please enter a role";
+        }
+        if (!department) {
+          isError = true;
+          departmentErr.textContent = "Please select a department";
+        }
+
+        if (!isError) {
+          try {
+            const res = await fetch("/admin/faculties/create-faculty", {
+              method: "POST",
+              body: JSON.stringify({
+                firstName,
+                middleName,
+                lastName,
+                employeeNumber,
+                email,
+                phone,
+                password,
+                role,
+                department,
+              }),
+              headers: { "Content-Type": "application/json" },
+            });
+            const data = await res.json();
+            console.log(data);
+
+            if (data.errors) {
+            }
+            if (data.faculty) {
+              location.assign(`/admin/faculties/create-faculty`);
+            }
+          } catch (err) {
+            console.log(err);
+          }
+        }
+      });
+    </script>
+    <%- include('../partials/footer.ejs')%>
+  </body>
+</html>

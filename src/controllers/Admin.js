@@ -2,7 +2,10 @@ const Faculty = require("../models/Faculty");
 
 const adminIndex = (req, res) => {};
 
-const createFacultyGet = (req, res) => {};
+const createFacultyGet = (req, res) => {
+  res.render("admin/create", { title: "Faculty registration" });
+};
+
 const createFacultyPost = async (req, res) => {
   const {
     firstName,
@@ -16,15 +19,8 @@ const createFacultyPost = async (req, res) => {
     department,
   } = req.body;
 
-  if (
-    middleName === null ||
-    typeof middleName === "undefined" ||
-    (typeof middleName === "string" && middleName.trim() === "")
-  )
-    middleName = null;
-
   try {
-    const faculty = await User.create({
+    const faculty = await Faculty.create({
       firstName,
       middleName,
       lastName,

@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%- include('../partials/head.ejs') %>
+  <body>
+    <%- include('../partials/nav.ejs') %>
+    <div id="form">
+      <h2>Regsitration Form</h2>
+      <form
+        action="/student/register/2"
+        method="POST"
+        enctype="multipart/form-data"
+      >
+        <div>
+          <div>
+            <label for="applicant-photo"
+              >Passport size photo:<span class="starred">*</span> </label
+            ><br />
+            <input
+              type="file"
+              name="applicant-photo"
+              id="applicant-photo"
+            /><br />
+            <span class="error" id="applicant-photo-err"></span>
+          </div>
+          <div>
+            <label for="kerala-entrance-rank-list"
+              >Kerala Entrance Rank List:<span class="starred">*</span> </label
+            ><br />
+            <input
+              type="file"
+              name="kerala-entrance-rank-list"
+              id="kerala-entrance-rank-list"
+            />
+            <br />
+            <span class="error" id="kerala-entrance-rank-list-err"></span>
+          </div>
+          <div>
+            <label for="bank-account-pass-book"
+              >Bank Account Pass Book:<span class="starred">*</span> </label
+            ><br />
+            <input
+              type="file"
+              name="bank-account-pass-book"
+              id="bank-account-pass-book"
+            />
+            <br />
+            <span class="error" id="bank-account-pass-book-err"></span>
+          </div>
+        </div>
+        <div>
+          <input type="hidden" id="id" value="<%= application %>" />
+          <button id="btn">Submit Application</button>
+        </div>
+      </form>
+    </div>
+    <script>
+      const btn = document.getElementById("btn");
+      const applicantPhotoErr = document.getElementById("applicant-photo-err");
+      const keralaEntranceRankListErr = document.getElementById(
+        "kerala-entrance-rank-list-err"
+      );
+      const bankAccountPassBookErr = document.getElementById(
+        "bank-account-pass-book-err"
+      );
+
+      btn.addEventListener("click", async (event) => {
+        event.preventDefault();
+
+        applicantPhotoErr.textContent = "";
+        keralaEntranceRankListErr.textContent = "";
+        bankAccountPassBookErr.textContent = "";
+
+        const id = document.getElementById("id").value;
+        const applicantPhoto =
+          document.getElementById("applicant-photo").files[0];
+        const keralaEntranceRankList = document.getElementById(
+          "kerala-entrance-rank-list"
+        ).files[0];
+        const bankAccountPassBook = document.getElementById(
+          "bank-account-pass-book"
+        ).files[0];
+
+        let isError = false;
+
+        if (!applicantPhoto.files || applicantPhoto.files.length === 0) {
+          applicantPhotoErr.textContent = "Please select a file.";
+          isError = true;
+        }
+
+        if (
+          !keralaEntranceRankList.files ||
+          keralaEntranceRankList.files.length === 0
+        ) {
+          keralaEntranceRankListErr.textContent = "Please select a file.";
+          isError = true;
+        }
+
+        if (
+          !bankAccountPassBook.files ||
+          bankAccountPassBook.files.length === 0
+        ) {
+          bankAccountPassBookErr.textContent = "Please select a file.";
+          isError = true;
+        }
+
+        const formData = new FormData();
+
+        formData.append("applicant-photo", applicantPhoto);
+        formData.append("kerala-entrance-rank-list", keralaEntranceRankList);
+        formData.append("bank-account-pass-book", bankAccountPassBook);
+
+        console.log(...formData);
+
+        try {
+          const res = await fetch(`/student/register/2/${id}`, {
+            method: "POST",
+            body: formData,
+            // headers: { "Content-Type": "application/json" },
+          });
+
+          const data = await res.json();
+          console.log(data.status);
+        } catch (err) {}
+      });
+    </script>
+    <%- include('../partials/footer.ejs')%>
+  </body>
+</html>

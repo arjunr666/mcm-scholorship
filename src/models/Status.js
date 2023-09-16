@@ -30,17 +30,14 @@ const statusSchema = new Schema(
     advisor: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "Faculty",
-      required: true,
     },
     hod: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "Faculty",
-      required: true,
     },
     coordinator: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "Faculty",
-      required: true,
     },
   },
   { timestamps: true }

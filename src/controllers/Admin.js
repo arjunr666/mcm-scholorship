@@ -1,12 +1,14 @@
 const Faculty = require("../models/Faculty");
 
-const adminIndex = (req, res) => {};
-
-const createFacultyGet = (req, res) => {
-  res.render("admin/create", { title: "Faculty registration" });
+const adminIndex = (req, res) => {
+  res.render("admin/index",{title: "Admin Home Page"});
 };
 
-const createFacultyPost = async (req, res) => {
+const registerFacultyGet = (req, res) => {
+  res.render("admin/register_facculty", { title: "Faculty registration" });
+};
+
+const registerFacultyPost = async (req, res) => {
   const {
     firstName,
     middleName,
@@ -75,27 +77,27 @@ const viewFaculties = async (req, res) => {
     console.log(err);
   }
 };
-const resetPassword = (req, res) => {
-  const employeeNumber = String(req.params.empNo);
+// const resetPassword = (req, res) => {
+//   const employeeNumber = String(req.params.empNo);
 
-  try {
-    const faculty = Faculty.updateOne(
-      { employeeNumber },
-      { $set: { password: "Test@1234#" } }
-    );
+//   try {
+//     const faculty = Faculty.updateOne(
+//       { employeeNumber },
+//       { $set: { password: "Test@1234#" } }
+//     );
 
-    res.redirect("");
-  } catch (err) {
-    console.log(err);
-  }
-};
+//     res.redirect("");
+//   } catch (err) {
+//     console.log(err);
+//   }
+// };
 
 module.exports = {
   adminIndex,
-  createFacultyGet,
-  createFacultyPost,
+  registerFacultyGet,
+  registerFacultyPost,
   searchFaculty,
   viewFaculties,
   viewFaculty,
-  resetPassword,
+  // resetPassword,
 };

@@ -295,37 +295,14 @@
         IFSC Code:
         <span class="data"><%= application.bankAccountDetails.ifsc %></span>
       </p>
-
-      <input type="hidden" id="id" value="<%= application._id%> " />
-      <!-- <a href="/student/register/confirm-application/<%= application._id%>">Confirm</a>
-      <a href="/student/register/update-application/<%= application._id%>">Edit</a> -->
       <button id="confirm">Confirm</button>
-      <button id="edit">Edit</button>
     </div>
     <script>
-      const id = document.getElementById("id");
       const confirmBtn = document.getElementById("confirm");
       const editBtn = document.getElementById("edit");
 
       confirmBtn.addEventListener("click", async (req, res) => {
-        try {
-          const res = await fetch("/student/register/confirm-application", {
-            method: "POST",
-            body: JSON.stringify({ id }),
-            headers: { "Content-Type": "application/json" },
-          });
-
-          const data = await res.json();
-          if(data.status){
-            location.assign("/");
-          }
-        } catch (err) {}
-      });
-
-      editBtn.addEventListener("click", async (req,res) => {
-        
-        location.assign(`/student/register/update-application/${id}`)
-        
+        location.assign(`/`);
       });
     </script>
     <%- include('../partials/footer.ejs')%>

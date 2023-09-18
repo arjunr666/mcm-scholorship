@@ -33,13 +33,13 @@ router.post(
 );
 
 router.get(
-  "/student/register/confirm-application/:id",
+  "/student/register/3/confirm-application/:id",
   studentController.getApplicationConfirmation
 );
-router.post(
-  "/student/register/confirm-application",
-  studentController.postApplicationConfirmation
-);
+// router.post(
+//   "/student/register/3/confirm-application",
+//   studentController.postApplicationConfirmation
+// );
 router.get(
   "/student/register/update-application/:id",
   studentController.getApplicationUpdate
@@ -49,7 +49,7 @@ router.post(
   studentController.postApplicationUpdate
 );
 router.get(
-  "/student/register/print-application/:id",
+  "/student/register/print-application",
   studentController.printApplication
 );
 

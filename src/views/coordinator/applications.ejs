@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%- include('../partials/head.ejs') %>
+  <body>
+    <%- include('../partials/coordinatornav.ejs') %>
+
+    <h2>Applications</h2>
+    <div>
+      <% if(applications.length > 0) %> <% applications.forEach( application =>{
+      1 %> <%= application.fullName %>
+      <br />
+      <%= application.totalIncomeOfFamily %>
+
+      <a href="/coordinator/applications/approve/<%= application._id %>"
+        >Approve</a
+      >
+      <a href="/coordinator/applications/reject/<%= application._id %>"
+        >Reject</a
+      >
+      <a href="/coordinator/applications/<%= application._id %>">View</a><% })
+      %>
+    </div>
+
+    <%- include('../partials/footer.ejs')%>
+  </body>
+</html>

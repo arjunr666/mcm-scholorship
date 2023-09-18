@@ -1,8 +1,4 @@
-const multer = require("multer");
-const path = require("path");
 const Application = require("../models/Application");
-const Status = require("../models/Status");
-const { application } = require("express");
 
 // const handleErrors = (err) => {
 //   console.log(err.message, err.code);
@@ -236,7 +232,6 @@ const postApplicationFormTwo = async (req, res) => {
       }
     );
 
-
     res.status(200).json({ application: id });
   } catch (err) {
     console.log(err);
@@ -247,31 +242,39 @@ const postApplicationFormTwo = async (req, res) => {
 const getApplicationConfirmation = async (req, res) => {
   const id = String(req.params.id);
 
+  // console.log(id);
   const application = await Application.findById(id);
-
+  console.log(application._id);
   res.render("student/confirmation", {
     title: "Confirmation",
     application: application,
   });
 };
-const postApplicationConfirmation = async (req, res) => {
-  const id = req.body;
+// const postApplicationConfirmation = async (req, res) => {
+//   const { id } = req.body;
 
-  try {
-    const status = await Status.create({
-      application: id,
-    });
+//   try {
+//     const status = await Status.create({
+//       application: id,
+//       department: department
+//     });
 
-    console.log(status);
-    res.status(200).json({ status: application._id });
-  } catch (err) {
-    console.log(err);
-    res.status(400).json({ err });
-  }
-};
+//     console.log(status);
+//     res.status(200).json({ status: status._id });
+//   } catch (err) {
+//     console.log(err);
+//     res.status(400).json({ err });
+//   }
+// };
 const getApplicationUpdate = (req, res) => {};
 const postApplicationUpdate = (req, res) => {};
-const printApplication = (req, res) => {};
+
+const printApplication = (req, res) => {
+  // const doc = new PDFDocument();
+  // doc.pipe(fs.createWriteStream("output.pdf"));
+  // doc.fontSize(25).text("Some text with an embedded font!", 100, 100);
+  // doc.end();
+};
 
 module.exports = {
   getApplicationFormOne,
@@ -279,7 +282,7 @@ module.exports = {
   getApplicationFormTwo,
   postApplicationFormTwo,
   getApplicationConfirmation,
-  postApplicationConfirmation,
+  // postApplicationConfirmation,
   getApplicationUpdate,
   postApplicationUpdate,
   printApplication,

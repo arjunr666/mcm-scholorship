@@ -46,6 +46,18 @@
             <br />
             <span class="error" id="bank-account-pass-book-err"></span>
           </div>
+          <div>
+            <label for="income-certificate"
+              >Income Certificate:<span class="starred">*</span> </label
+            ><br />
+            <input
+              type="file"
+              name="income-certificate"
+              id="income-certificate"
+            />
+            <br />
+            <span class="error" id="income-certificate-err"></span>
+          </div>
         </div>
         <div>
           <input type="hidden" id="id" value="<%= application %>" />
@@ -63,12 +75,16 @@
         "bank-account-pass-book-err"
       );
 
+      const incomeCertificateErr = document.getElementById(
+        "income-certificate-err"
+      );
       btn.addEventListener("click", async (event) => {
         event.preventDefault();
 
         applicantPhotoErr.textContent = "";
         keralaEntranceRankListErr.textContent = "";
         bankAccountPassBookErr.textContent = "";
+        incomeCertificateErr.textContent = "";
 
         const id = document.getElementById("id").value;
         const applicantPhoto =
@@ -79,6 +95,9 @@
         const bankAccountPassBook = document.getElementById(
           "bank-account-pass-book"
         ).files[0];
+
+        const incomeCertificate =
+          document.getElementById("income-certificate").files[0];
 
         let isError = false;
 
@@ -103,24 +122,40 @@
           isError = true;
         }
 
+        if (!incomeCertificate.files || incomeCertificate.files.length === 0) {
+          incomeCertificateErr.textContent = "Please select a file.";
+          isError = true;
+        }
+
         const formData = new FormData();
 
-        formData.append("applicant-photo", applicantPhoto);
-        formData.append("kerala-entrance-rank-list", keralaEntranceRankList);
-        formData.append("bank-account-pass-book", bankAccountPassBook);
+        formData.append("id", id);
+        formData.append("applicant_photo", applicantPhoto);
+        formData.append("kerala_entrance_rank_list", keralaEntranceRankList);
+        formData.append("bank_account_pass_book", bankAccountPassBook);
+        formData.append("income_certificate", incomeCertificate);
 
         console.log(...formData);
 
         try {
-          const res = await fetch(`/student/register/2/${id}`, {
+          const res = await fetch(`/student/register/2/`, {
             method: "POST",
             body: formData,
-            // headers: { "Content-Type": "application/json" },
           });
 
           const data = await res.json();
-          console.log(data.status);
-        } catch (err) {}
+          console.log(data);
+          
+          if (data.error) {
+          }
+          if (data.application) {
+            location.assign(
+              `/student/register/3/confirm-application/${data.application}`
+            );
+          }
+        } catch (err) {
+          console.log(err);
+        }
       });
     </script>
     <%- include('../partials/footer.ejs')%>

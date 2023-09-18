@@ -1,13 +1,9 @@
 const jwt = require("jsonwebtoken");
 const Faculty = require("../models/Faculty");
 
-//check for login
 const requireAuth = (req, res, next) => {
   const token = req.cookies.jwt;
 
-
-  console.log(process.env.secret);
-  
   if (token) {
     jwt.verify(token, process.env.secret, (err, decodedToken) => {
       if (err) {
@@ -40,7 +36,12 @@ const checkFaculty = (req, res, next) => {
         console.log(decodedToken);
         let faculty = await Faculty.findById(decodedToken.id);
         res.locals.faculty = faculty;
-        next();
+
+        if (faculty.role === "advisor") res.redirect("/admin");
+        else if (faculty.role === "hod") res.redirect("/hod");
+        else if (faculty.role === "coordinator") res.redirect("/coordinator");
+        else if (faculty.role === "admin") res.redirect("/admin");
+        // next();
       }
     });
   } else {
@@ -49,4 +50,93 @@ const checkFaculty = (req, res, next) => {
   }
 };
 
-module.exports = { requireAuth, checkFaculty };
+const checkAdvisor = (req, res, next) => {
+  const token = req.cookies.jwt;
+
+  if (token) {
+    jwt.verify(token, process.env.secret, async (err, decodedToken) => {
+      if (err) {
+        console.log(err);
+        res.redirect("/403");
+      } else {
+        console.log(decodedToken);
+        let faculty = await Faculty.findById(decodedToken);
+
+        if (faculty.role === "advisor") next();
+        else res.redirect("/403");
+      }
+    });
+  } else {
+    res.redirect("/faculty/signin");
+  }
+  next();
+};
+const checkHod = (req, res, next) => {
+  const token = req.cookies.jwt;
+  if (token) {
+    jwt.verify(token, process.env.secret, async (err, decodedToken) => {
+      if (err) {
+        console.log(err);
+        res.redirect("/403");
+      } else {
+        console.log(decodedToken);
+        let faculty = await Faculty.findById(decodedToken);
+
+        if (faculty.role === "hod") next();
+        else res.redirect("/403");
+      }
+    });
+  } else {
+    res.redirect("/faculty/signin");
+  }
+  next();
+};
+const checkCoordinator = (req, res, next) => {
+  const token = req.cookies.jwt;
+  if (token) {
+    jwt.verify(token, process.env.secret, async (err, decodedToken) => {
+      if (err) {
+        console.log(err);
+        res.redirect("/403");
+      } else {
+        console.log(decodedToken);
+        let faculty = await Faculty.findById(decodedToken);
+
+        if (faculty.role === "coordinator") next();
+        else res.redirect("/403");
+      }
+    });
+  } else {
+    res.redirect("/faculty/signin");
+  }
+  next();
+};
+const checkAdmin = (req, res, next) => {
+  const token = req.cookies.jwt;
+  if (token) {
+    jwt.verify(token, process.env.secret, async (err, decodedToken) => {
+      if (err) {
+        console.log(err);
+        res.redirect("/403");
+      } else {
+        console.log(decodedToken);
+        let faculty = await Faculty.findById(decodedToken);
+
+        if (faculty.role === "admin") next();
+        else res.redirect("/403");
+      }
+    });
+  } else {
+    res.redirect("/faculty/signin");
+  }
+  next();
+};
+
+module.exports = {
+  requireAuth,
+  checkFaculty,
+  checkAdvisor,
+  checkAdmin,
+  checkHod,
+  checkCoordinator,
+};

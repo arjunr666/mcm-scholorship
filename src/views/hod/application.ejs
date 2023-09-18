@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%- include('../partials/head.ejs') %>
+  <body>
+    <%- include('../partials/advisornav.ejs') %>
+
+    <h2>Application Details</h2>
+    <div><%= application.fullName %></div>
+    <a href="/hod/applications/approve/<%= application._id %>">Approve</a>
+    <a href="/hod/applications/reject/<%= application._id %>">Reject</a>
+    <%- include('../partials/footer.ejs')%>
+  </body>
+</html>

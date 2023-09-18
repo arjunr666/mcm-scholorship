@@ -169,6 +169,11 @@ const applicationSchema = new Schema(
     },
     expectedExpenses: expenses,
     bankAccountDetails: bankAccount,
+    applicantPhoto: {
+      filename: String,
+      originalName: String,
+      contentType: String,
+    },
     bankPassbook: {
       filename: String,
       originalName: String,
@@ -177,10 +182,42 @@ const applicationSchema = new Schema(
     incomeCertificate: {
       filename: String,
       contentType: String,
+      originalName: String,
     },
     entraceRanklist: {
       filename: String,
       contentType: String,
+      originalName: String,
+    },
+    advisorApproval: {
+      type: String,
+      required: true,
+      enum: ["pending", "approved", "rejected"],
+      default: "pending",
+    },
+    hodApproval: {
+      type: String,
+      required: true,
+      enum: ["pending", "approved", "rejected"],
+      default: "pending",
+    },
+    coordinatorApproval: {
+      type: String,
+      required: true,
+      enum: ["pending", "approved", "rejected"],
+      default: "pending",
+    },
+    advisor: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Faculty",
+    },
+    hod: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Faculty",
+    },
+    coordinator: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Faculty",
     },
   },
 

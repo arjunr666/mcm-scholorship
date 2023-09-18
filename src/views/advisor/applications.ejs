@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%- include('../partials/head.ejs') %>
+  <body>
+    <%- include('../partials/advisorNav.ejs') %>
+
+    <h2>Applications</h2>
+    <div>
+      <% if(applications.length > 0) %> <% applications.forEach( application =>{
+      1 %> <%= application.fullName %>
+      <br />
+      <%= application.totalIncomeOfFamily %>
+
+      <a href="/advisor/applications/approve/<%= application._id %>">Approve</a>
+      <a href="/advisor/applications/reject/<%= application._id %>">Reject</a>
+      <a href="/advisor/applications/<%= application._id %>">View</a><% }) %>
+    </div>
+
+    <%- include('../partials/footer.ejs')%>
+  </body>
+</html>

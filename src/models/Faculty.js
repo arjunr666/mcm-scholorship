@@ -44,7 +44,7 @@ const facultySchema = new Schema(
     password: {
       type: String,
       required: [true, "Please enter a passowrd"],
-      minlength: [10, "Password should be atleast 10 characters"],
+      minlength: [6, "Password should be atleast 6 characters"],
       maxlength: [25, "Password should not exceed 25 characters"],
     },
     phone: {

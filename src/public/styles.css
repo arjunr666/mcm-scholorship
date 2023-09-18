@@ -12,9 +12,11 @@ body {
 .error {
   font-size: 12px;
   color: #ff0000;
+
 }
 .data {
   font-style: italic;
   font-weight:bold;
   font-size: 15px;
+
 }

@@ -1,8 +1,4 @@
-const multer = require("multer");
-const path = require("path");
 const Application = require("../models/Application");
-const Status = require("../models/Status");
-const { application } = require("express");
 
 // const handleErrors = (err) => {
 //   console.log(err.message, err.code);
@@ -23,7 +19,6 @@ const { application } = require("express");
 // }
 //   return errors;
 // };
-
 const getApplicationFormOne = (req, res) => {
   res.render("student/application1", { title: "Registration" });
 };
@@ -86,6 +81,7 @@ const postApplicationFormOne = async (req, res) => {
     branchName,
     accountHolderName,
     accountNumber,
+
     ifscCode,
   } = req.body;
 
@@ -203,7 +199,7 @@ const getApplicationFormTwo = (req, res) => {
 };
 
 // const postApplicationFormTwo = async (req, res) => {
-  
+
 // };
 
 const getApplicationConfirmation = async (req, res) => {
@@ -239,7 +235,7 @@ module.exports = {
   getApplicationFormOne,
   postApplicationFormOne,
   getApplicationFormTwo,
- // postApplicationFormTwo,
+  // postApplicationFormTwo,
   getApplicationConfirmation,
   postApplicationConfirmation,
   getApplicationUpdate,

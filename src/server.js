@@ -10,14 +10,13 @@ const app = express();
 
 const PORT = process.env.PORT || 3000;
 
-//const dbURI = `mongodb+srv://${process.env.DBUser}:${process.env.DBPass}@mcm.jpgn2iz.mongodb.net/?retryWrites=true&w=majority`;
 const dbURI = `mongodb+srv://${process.env.DBUser}:${process.env.DBPass}@mcm.jpgn2iz.mongodb.net/?retryWrites=true&w=majority`;
 
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
 app.use(express.json());
 app.use(express.static("src/public"));
-app.use(express.static("src/uploads"));
+
 app.use(express.urlencoded({ extended: true }));
 app.use(studentRoutes, adminRoutes);
 

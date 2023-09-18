@@ -715,10 +715,7 @@
           //-------------------------------------------
           const file = document.querySelectorAll("input[type=file]");
           console.log(file);
-          const fileData = new FormData();
-          for (const f of file) {
-            fileData.append("file", f.files[0]);
-          }
+
           //--------------------------------------------------
 
           fullNameErr.textContent = "";
@@ -983,9 +980,91 @@
           if (!isError) {
             console.log("clicked");
 
+            const fileData = new FormData();
+            for (const f of file) {
+              fileData.append("file", f.files[0]);
+            }
+
+            const entries = [
+              { name: "fullName", value: fullName },
+              { name: "contactNumber", value: contactNumber },
+              { name: "category", value: category },
+              { name: "gender", value: gender },
+              { name: "dateOfBirth", value: dateOfBirth },
+              { name: "hostellerOrDaysScholar", value: hostellerOrDaysScholar },
+              { name: "branch", value: branch },
+              { name: "yearOfAdmission", value: yearOfAdmission },
+              { name: "residentialAddress", value: residentialAddress },
+              { name: "hostelAddress", value: hostelAddress },
+              {
+                name: "plusTwoInstitutionAddress",
+                value: plusTwoInstitutionAddress,
+              },
+              { name: "rankFirstChance", value: rankFirstChance },
+              { name: "rankSecondChance", value: rankSecondChance },
+              { name: "rankThirdChance", value: rankThirdChance },
+              { name: "gpaS1", value: gpaS1 },
+              { name: "gpaS2", value: gpaS2 },
+              { name: "gpaS3", value: gpaS3 },
+              { name: "gpaS4", value: gpaS4 },
+              { name: "gpaS5", value: gpaS5 },
+              { name: "gpaS6", value: gpaS6 },
+              { name: "gpaS7", value: gpaS7 },
+              { name: "monthAndYearS1", value: monthAndYearS1 },
+              { name: "monthAndYearS2", value: monthAndYearS2 },
+              { name: "monthAndYearS3", value: monthAndYearS3 },
+              { name: "monthAndYearS4", value: monthAndYearS4 },
+              { name: "monthAndYearS4", value: monthAndYearS4 },
+              { name: "monthAndYearS6", value: monthAndYearS6 },
+              { name: "monthAndYearS7", value: monthAndYearS7 },
+              { name: "noOfBackPapersS1", value: noOfBackPapersS1 },
+              { name: "noOfBackPapersS2", value: noOfBackPapersS2 },
+              { name: "noOfBackPapersS3", value: noOfBackPapersS3 },
+              { name: "noOfBackPapersS4", value: noOfBackPapersS4 },
+              { name: "noOfBackPapersS5", value: noOfBackPapersS5 },
+              { name: "noOfBackPapersS6", value: noOfBackPapersS6 },
+              { name: "noOfBackPapersS7", value: noOfBackPapersS7 },
+              { name: "nameOfFather", value: nameOfFather },
+              { name: "nameOfMother", value: nameOfMother },
+              { name: "ageOfFather", value: ageOfFather },
+              { name: "ageOfMother", value: ageOfMother },
+              { name: "annualIncomeOfFather", value: annualIncomeOfFather },
+              { name: "annualIncomeOfMother", value: annualIncomeOfMother },
+              { name: "otherIncomeSource", value: otherIncomeSource },
+              { name: "totalIncomeOfFamily", value: totalIncomeOfFamily },
+              { name: "isBankLoan", value: isBankLoan },
+
+              { name: "isOtherSources", value: isOtherSources },
+              { name: "otherIncomeSource", value: otherIncomeSource },
+              {
+                name: "nameOfAvailingScholorship",
+                value: nameOfAvailingScholorship,
+              },
+              { name: "semesterFees", value: semesterFees },
+
+              { name: "examFees", value: examFees },
+              { name: "hostelFees", value: hostelFees },
+              { name: "bookOrStationaryFees", value: bookOrStationaryFees },
+              { name: "otherExpenses", value: otherExpenses },
+              { name: "branchName", value: branchName },
+              { name: "accountHolderName", value: accountHolderName },
+              { name: "accountNumber", value: accountNumber },
+              { name: "ifscCode", value: ifscCode },
+            ];
+
+            const formField = {
+              name: "data",
+              value: JSON.stringify(entries),
+            };
+
+            fileData.append(formField.name, formField.value);
+            const boundary =
+              "----WebKitFormBoundary" + Math.random().toString(36).substr(7);
+
             try {
               const res = await fetch("/student/register/1", {
                 method: "POST",
+
                 body: JSON.stringify({
                   fullName,
                   contactNumber,

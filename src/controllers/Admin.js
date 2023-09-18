@@ -1,6 +1,8 @@
 const Faculty = require("../models/Faculty");
 
-const adminIndex = (req, res) => {};
+const adminIndex = (req, res) => {
+  
+};
 
 const createFacultyGet = (req, res) => {
   res.render("admin/create", { title: "Faculty registration" });

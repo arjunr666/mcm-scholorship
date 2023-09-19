@@ -19,19 +19,19 @@ router.get(
   adminController.viewFaculty
 );
 
-router.post(
-  "/admin/faculties/view-faculties/reset-password/:empNo",
-  adminController.resetPassword
-);
+// router.post(
+//   "/admin/faculties/view-faculties/reset-password/:empNo",
+//   adminController.resetPassword
+// );
 
-router.get(
-  "/admin/faculties/create-faculty",
-  adminController.createFacultyGet
-);
+// router.get(
+//   "/admin/faculties/create-faculty",
+//   adminController.createFacultyGet
+// );
 
-router.post(
-  "/admin/faculties/create-faculty",
-  adminController.createFacultyPost
-);
+// router.post(
+//   "/admin/faculties/create-faculty",
+//   adminController.createFacultyPost
+// );
 
 module.exports = router;

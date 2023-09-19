@@ -1,15 +1,7 @@
 const Faculty = require("../models/Faculty");
 
 const adminIndex = (req, res) => {
-<<<<<<< HEAD
-  
-};
-
-const createFacultyGet = (req, res) => {
-  res.render("admin/create", { title: "Faculty registration" });
-=======
-  res.render("admin/index",{title: "Admin Home Page"});
->>>>>>> test
+  res.render("admin/index", { title: "Admin Home Page" });
 };
 
 const registerFacultyGet = (req, res) => {
@@ -107,5 +99,5 @@ module.exports = {
   searchFaculty,
   viewFaculties,
   viewFaculty,
-  // resetPassword,
+
 };

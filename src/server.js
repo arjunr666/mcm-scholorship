@@ -53,3 +53,7 @@ app.get("/404", (req, res) => {
 app.get("/500", (req, res) => {
   res.render("500", { title: "Internal Server Error" });
 });
+
+app.get("/about", (req, res) => {
+  res.render("about", { title: "About" });
+});

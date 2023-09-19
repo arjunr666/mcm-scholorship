@@ -5,7 +5,7 @@ const advisorController = require("../controllers/Advisor");
 
 router.get("/advisor", advisorController.index);
 router.get(
-  "/advisor/applications/",
+  "/advisor/applications",
   advisorController.getStudentList
 );
 router.get("/advisor/applications/:id", advisorController.showStudentDetail);

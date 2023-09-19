@@ -8,6 +8,7 @@ const adminRoutes = require("./routes/Admin");
 const advisorRoutes = require("./routes/Advisor");
 const hodRoutes = require("./routes/Hod");
 const coordinatorRoutes = require("./routes/Coordinator");
+const authRoutes = require("../src/routes/Auth");
 
 const app = express();
 
@@ -26,7 +27,8 @@ app.use(
   adminRoutes,
   advisorRoutes,
   hodRoutes,
-  coordinatorRoutes
+  coordinatorRoutes,
+  authRoutes
 );
 
 mongoose
